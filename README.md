@@ -1,13 +1,16 @@
 # 🤖 Agentic Claude Code Plugins
 
-> A marketplace of **20 Claude Code plugins** for agentic workflows — organized around Boris Cherny's five stages of AI adoption. Install any of them with one command.
+> A marketplace of **40 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, and quality. Install any of them with one command.
 
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugins-D97757?logo=anthropic&logoColor=white)
-![Plugins](https://img.shields.io/badge/plugins-20-6f42c1)
+![Plugins](https://img.shields.io/badge/plugins-40-6f42c1)
 ![Agentic Workflows](https://img.shields.io/badge/focus-agentic%20workflows-1f883d)
+![Enterprise Ready](https://img.shields.io/badge/enterprise-ready-0A66C2)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 20 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup.
+I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 40 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality.
+
+📖 **New here?** Read [How to write a good plugin](./docs/writing-good-plugins.md) and [How plugins create lean, structured context](./docs/lean-structured-context.md) — the research behind this marketplace.
 
 ## 🚀 Install
 
@@ -79,6 +82,53 @@ The plugin categories map to the maturity model from **Boris Cherny's "Steps to 
 | [**cost-controller**](./plugins/cost-controller) | A model-selection policy: cheap/fast for bulk work, frontier for judgment. |
 | [**token-budget-tracker**](./plugins/token-budget-tracker) | A session hook + `/token-budget` to track usage and trim context. |
 | [**otel-governance**](./plugins/otel-governance) | Enable OpenTelemetry export + spend caps for team governance. |
+
+## 🏢 Enterprise plugins
+
+Beyond the agentic-adoption core, an enterprise layer for teams that need security, compliance, governance, and quality guardrails.
+
+### 🔒 Security & compliance
+| Plugin | What it installs |
+| --- | --- |
+| [**secret-scanner**](./plugins/secret-scanner) | A hook + `/scan-secrets` that flag likely secrets (keys, tokens, private keys) in the diff before they leak. |
+| [**dependency-auditor**](./plugins/dependency-auditor) | `/audit-deps` — vulnerability audit via native tooling (npm/pip/cargo/govulncheck) with triage. |
+| [**license-compliance**](./plugins/license-compliance) | `/check-licenses` — inventory dependency licenses and flag ones outside your SPDX allowlist. |
+| [**sbom-generator**](./plugins/sbom-generator) | `/generate-sbom` — produce a CycloneDX/SPDX Software Bill of Materials. |
+| [**data-classification**](./plugins/data-classification) | `/classify-data` — classify fields (public/internal/confidential/PII) and recommend handling. |
+| [**compliance-checklist**](./plugins/compliance-checklist) | `/compliance-check` — pre-release controls mapped to SOC 2 / ISO 27001. |
+| [**access-review**](./plugins/access-review) | A read-only subagent that reviews IAM/RBAC changes for over-broad grants and escalation. |
+
+### 📐 Governance & standards
+| Plugin | What it installs |
+| --- | --- |
+| [**pr-governance**](./plugins/pr-governance) | `/pr-review` — enforce PR standards (description, linked ticket, size, tests, scope). |
+| [**conventional-commits**](./plugins/conventional-commits) | `/commit` + a hook that formats and validates Conventional Commits. |
+| [**adr-manager**](./plugins/adr-manager) | `/adr-new` + `/adr-list` — create and manage Architecture Decision Records. |
+| [**changelog-generator**](./plugins/changelog-generator) | `/update-changelog` — maintain a Keep-a-Changelog from commit history. |
+| [**release-manager**](./plugins/release-manager) | `/release` — a repeatable semver bump → tag → notes → checklist flow. |
+| [**codeowners-manager**](./plugins/codeowners-manager) | `/codeowners` — scaffold and validate CODEOWNERS so critical paths are owned. |
+| [**standards-enforcer**](./plugins/standards-enforcer) | `/enforce-standards` — check a diff against your editable org standards profile. |
+
+### 🧪 Quality & reliability
+| Plugin | What it installs |
+| --- | --- |
+| [**test-coverage-gate**](./plugins/test-coverage-gate) | A hook + `/coverage-gate` that gates below a configurable coverage threshold. |
+| [**api-contract-guard**](./plugins/api-contract-guard) | `/api-compat` — detect breaking API changes by diffing OpenAPI/JSON schemas. |
+| [**docs-guardian**](./plugins/docs-guardian) | A hook + `/docs-check` that flag stale docs when code changes. |
+| [**incident-runbook**](./plugins/incident-runbook) | `/incident` — triage, comms templates, and a blameless postmortem scaffold. |
+| [**terraform-policy**](./plugins/terraform-policy) | `/tf-policy` — policy-as-code checks for IaC (public buckets, open SGs, missing encryption). |
+
+### 🧮 Context engineering
+| Plugin | What it installs |
+| --- | --- |
+| [**context-budget**](./plugins/context-budget) | ⭐ `/context-audit` — audit `CLAUDE.md` and skills for bloat and enforce lean, structured context via progressive disclosure. |
+
+## 📖 Research & guides
+
+Two write-ups that motivate how these plugins are built:
+
+- **[Writing a good Claude Code plugin](./docs/writing-good-plugins.md)** — choosing skill vs. command vs. subagent vs. hook, description-as-trigger, progressive disclosure, validation, and security.
+- **[Lean & structured context](./docs/lean-structured-context.md)** — how skills, path-scoped rules, subagents, and deferred MCP schemas keep the context window lean, with the token-budget math.
 
 ## 🛠️ Repo layout
 
