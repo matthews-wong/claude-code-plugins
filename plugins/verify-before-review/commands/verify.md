@@ -1,6 +1,6 @@
 ---
 name: verify
-description: Run the project's tests, lint, and build, then report a clear PASS/FAIL summary before the user reviews the changes.
+description: Run the project's tests, lint, and build/typecheck and report a clear PASS/FAIL verdict on whether the current changes are ready. Use before committing, opening a pull request, or requesting review — the self-verification step that comes before code review.
 ---
 
 You are performing **Step 1: self-verification** before any human review. Your job
