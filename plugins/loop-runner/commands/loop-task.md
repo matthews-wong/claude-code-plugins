@@ -1,6 +1,6 @@
 ---
 name: loop-task
-description: Turn a repeatable task into a recurring routine using Claude Code's /loop, choosing interval vs. self-paced and setting a clear stop condition.
+description: Use when a task should repeat on a schedule or until a condition is met — sets up Claude Code's /loop with the right mode (interval vs. self-paced) and a mandatory stop condition. Triggers on 'run every N minutes', 'keep running until', 'poll for status'.
 args: "[interval like 5m (optional)] [the task or /slash-command to repeat]"
 ---
 
