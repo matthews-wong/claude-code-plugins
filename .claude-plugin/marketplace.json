@@ -432,6 +432,17 @@
         "governance"
       ],
       "description": "A pre-release control checklist mapped to SOC 2 / ISO 27001 categories."
+    },
+    {
+      "name": "codeowners-manager",
+      "source": "codeowners-manager",
+      "category": "governance",
+      "keywords": [
+        "codeowners",
+        "github",
+        "governance"
+      ],
+      "description": "Scaffold and validate a GitHub CODEOWNERS file so critical paths are owned."
     }
   ]
 }

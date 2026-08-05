@@ -1,0 +1,23 @@
+{
+  "name": "codeowners-manager",
+  "version": "1.0.0",
+  "description": "Scaffold and validate a GitHub CODEOWNERS file: map path patterns to owning teams and ensure critical paths are covered.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "codeowners",
+    "github",
+    "code-review",
+    "ownership",
+    "governance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
