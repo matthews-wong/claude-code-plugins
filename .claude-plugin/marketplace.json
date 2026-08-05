@@ -396,6 +396,18 @@
         "reliability"
       ],
       "description": "Incident response triage, comms templates, and a blameless postmortem scaffold."
+    },
+    {
+      "name": "terraform-policy",
+      "source": "terraform-policy",
+      "category": "reliability",
+      "keywords": [
+        "terraform",
+        "iac",
+        "policy",
+        "security"
+      ],
+      "description": "Policy-as-code checks for IaC (Conftest/OPA, tfsec/checkov): public buckets, open SGs, missing encryption."
     }
   ]
 }

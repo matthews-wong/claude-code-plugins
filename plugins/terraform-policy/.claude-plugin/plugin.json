@@ -1,0 +1,26 @@
+{
+  "name": "terraform-policy",
+  "version": "1.0.0",
+  "description": "Policy-as-code checks for Terraform and IaC: flag public buckets, open security groups, missing encryption and tags using Conftest/OPA, tfsec, or Checkov.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "terraform",
+    "iac",
+    "policy-as-code",
+    "opa",
+    "conftest",
+    "tfsec",
+    "checkov",
+    "security"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
