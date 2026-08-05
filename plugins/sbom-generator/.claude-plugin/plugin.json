@@ -1,0 +1,24 @@
+{
+  "name": "sbom-generator",
+  "version": "1.0.0",
+  "description": "Produces a Software Bill of Materials (CycloneDX or SPDX) using standard tooling (syft, cdxgen) and explains what an SBOM is and why enterprises require one.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "sbom",
+    "cyclonedx",
+    "spdx",
+    "supply-chain",
+    "security",
+    "compliance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

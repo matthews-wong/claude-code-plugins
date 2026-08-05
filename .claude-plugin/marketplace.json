@@ -266,6 +266,18 @@
         "legal"
       ],
       "description": "Inventory dependency licenses and flag ones outside your allowlist (SPDX)."
+    },
+    {
+      "name": "sbom-generator",
+      "source": "sbom-generator",
+      "category": "compliance",
+      "keywords": [
+        "sbom",
+        "supply-chain",
+        "compliance",
+        "cyclonedx"
+      ],
+      "description": "Generate a CycloneDX/SPDX Software Bill of Materials for your project."
     }
   ]
 }
