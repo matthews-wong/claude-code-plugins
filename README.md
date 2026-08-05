@@ -1,14 +1,14 @@
 # 🤖 Agentic Claude Code Plugins
 
-> A marketplace of **40 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, and quality. Install any of them with one command.
+> A marketplace of **43 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
 
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugins-D97757?logo=anthropic&logoColor=white)
-![Plugins](https://img.shields.io/badge/plugins-40-6f42c1)
+![Plugins](https://img.shields.io/badge/plugins-43-6f42c1)
 ![Agentic Workflows](https://img.shields.io/badge/focus-agentic%20workflows-1f883d)
 ![Enterprise Ready](https://img.shields.io/badge/enterprise-ready-0A66C2)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 40 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality.
+I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 43 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
 
 📖 **New here?** Read [How to write a good plugin](./docs/writing-good-plugins.md) and [How plugins create lean, structured context](./docs/lean-structured-context.md) — the research behind this marketplace.
 
@@ -123,10 +123,21 @@ Beyond the agentic-adoption core, an enterprise layer for teams that need securi
 | --- | --- |
 | [**context-budget**](./plugins/context-budget) | ⭐ `/context-audit` — audit `CLAUDE.md` and skills for bloat and enforce lean, structured context via progressive disclosure. |
 
+## 🧑‍💻 Modeled on Boris Cherny's workflow
+
+Plugins that operationalize how [Claude Code's creator actually works](./docs/boris-cherny-principles.md) — his own subagents and engineering principles.
+
+| Plugin | What it installs |
+| --- | --- |
+| [**code-simplifier**](./plugins/code-simplifier) | Boris's own subagent — simplify the working diff after Claude is done; *prefer deleting lines to adding.* |
+| [**mistake-logger**](./plugins/mistake-logger) | The preserve-mistakes loop — capture a repeated mistake into `CLAUDE.md` or a skill so the fix persists. |
+| [**senior-standards**](./plugins/senior-standards) | His three principles as a skill + `/standards-check`: simplest change, root cause, minimal blast radius. |
+
 ## 📖 Research & guides
 
-Two write-ups that motivate how these plugins are built:
+Three write-ups that motivate how these plugins are built:
 
+- **[The Boris Cherny playbook](./docs/boris-cherny-principles.md)** — how Claude Code's creator uses it (verification loops, explore→plan→code, lean CLAUDE.md, subagents, parallel worktrees), with each plugin mapped to a practice.
 - **[Writing a good Claude Code plugin](./docs/writing-good-plugins.md)** — choosing skill vs. command vs. subagent vs. hook, description-as-trigger, progressive disclosure, validation, and security.
 - **[Lean & structured context](./docs/lean-structured-context.md)** — how skills, path-scoped rules, subagents, and deferred MCP schemas keep the context window lean, with the token-budget math.
 
