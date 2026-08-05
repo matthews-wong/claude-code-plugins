@@ -1,0 +1,24 @@
+{
+  "name": "secret-scanner",
+  "version": "1.0.0",
+  "description": "Heuristic safety net that scans the working diff for likely secrets (API keys, tokens, private keys, high-entropy strings) before they are committed or shared.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "secrets",
+    "credentials",
+    "pre-commit",
+    "compliance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}
