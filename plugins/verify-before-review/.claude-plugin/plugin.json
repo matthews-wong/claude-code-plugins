@@ -1,0 +1,20 @@
+{
+  "name": "verify-before-review",
+  "version": "1.0.0",
+  "description": "A self-verification loop that runs the project's tests, lint, and build before you hand changes to review. Implements Step 1 (verify) before Step 2 (review).",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "verification",
+    "tests",
+    "lint",
+    "self-review",
+    "quality-gate",
+    "hooks"
+  ],
+  "commands": ["./commands/"],
+  "hooks": "./hooks/hooks.json"
+}

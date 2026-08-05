@@ -1,0 +1,24 @@
+{
+  "name": "cost-controller",
+  "version": "1.0.0",
+  "description": "A model-selection policy: use cheaper, faster models for bulk mechanical work and frontier models for judgment and review, and switch models per task.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cost",
+    "governance",
+    "model-selection",
+    "budget",
+    "orchestration",
+    "tradeoff"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

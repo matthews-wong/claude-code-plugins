@@ -1,0 +1,23 @@
+{
+  "name": "repo-onboarder",
+  "version": "1.0.0",
+  "description": "Explores an unfamiliar repository with a read-only subagent (stack, entry points, build/test/run, conventions, gotchas) and produces an ONBOARDING.md.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "onboarding",
+    "exploration",
+    "subagent",
+    "repo-map",
+    "agentic"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "agents": [
+    "./agents/"
+  ]
+}

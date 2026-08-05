@@ -1,0 +1,23 @@
+{
+  "name": "skills-connector",
+  "version": "1.0.0",
+  "description": "Author and connect Claude Code skills: scaffold well-formed SKILL.md files, write routing-friendly descriptions, and build a coherent agentic skills library.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "context",
+    "authoring",
+    "routing",
+    "agentic"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

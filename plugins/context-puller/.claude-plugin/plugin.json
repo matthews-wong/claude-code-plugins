@@ -1,0 +1,23 @@
+{
+  "name": "context-puller",
+  "version": "1.0.0",
+  "description": "Gathers relevant repo context (README, docs, ADRs, related modules, recent git history) into a grounded working brief before a task begins.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "context",
+    "onboarding",
+    "brief",
+    "agentic",
+    "grounding"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

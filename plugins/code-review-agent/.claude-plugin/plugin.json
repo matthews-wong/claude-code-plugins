@@ -1,0 +1,20 @@
+{
+  "name": "code-review-agent",
+  "version": "1.0.0",
+  "description": "A subagent and command that review your working git diff for bugs, edge cases, and quality issues, reporting concise, actionable findings.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "git-diff",
+    "subagent",
+    "quality",
+    "bugs",
+    "self-review"
+  ],
+  "commands": ["./commands/"],
+  "agents": ["./agents/"]
+}

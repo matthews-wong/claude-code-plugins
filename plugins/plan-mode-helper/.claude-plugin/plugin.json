@@ -1,0 +1,23 @@
+{
+  "name": "plan-mode-helper",
+  "version": "1.0.0",
+  "description": "A plan-first workflow: produce a concise implementation plan and get confirmation before editing, then execute.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "plan-mode",
+    "workflow",
+    "planning",
+    "guardrails",
+    "agentic"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

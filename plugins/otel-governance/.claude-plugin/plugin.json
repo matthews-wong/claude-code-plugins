@@ -1,0 +1,24 @@
+{
+  "name": "otel-governance",
+  "version": "1.0.0",
+  "description": "Enable OpenTelemetry export for Claude Code usage and configure spend caps for team governance — a team/enterprise-oriented observability and cost-control setup.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "governance",
+    "opentelemetry",
+    "otel",
+    "observability",
+    "spend-caps",
+    "enterprise"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

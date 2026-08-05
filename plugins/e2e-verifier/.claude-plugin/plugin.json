@@ -1,0 +1,20 @@
+{
+  "name": "e2e-verifier",
+  "version": "1.0.0",
+  "description": "A checklist-driven skill and command that reproduce a change end-to-end, verify the happy path plus one edge case, and capture evidence before handing off to a human.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "e2e",
+    "verification",
+    "checklist",
+    "evidence",
+    "skill",
+    "self-review"
+  ],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
+}

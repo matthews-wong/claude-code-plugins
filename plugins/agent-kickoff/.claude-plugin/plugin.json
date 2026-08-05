@@ -1,0 +1,23 @@
+{
+  "name": "agent-kickoff",
+  "version": "1.0.0",
+  "description": "Decomposes a task into independent subtasks, kicks off a subagent per subtask (agent-to-agent orchestration), and synthesizes their results.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "orchestration",
+    "subagents",
+    "parallel",
+    "decomposition",
+    "agentic"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

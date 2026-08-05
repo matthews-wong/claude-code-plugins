@@ -1,0 +1,23 @@
+{
+  "name": "loop-runner",
+  "version": "1.0.0",
+  "description": "Turns a repeatable task into a recurring routine using Claude Code's /loop taxonomy (interval vs. self-paced), with stop conditions and runaway-loop safeguards.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "loop",
+    "routine",
+    "recurring",
+    "automation",
+    "agentic"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "worktree-isolation",
+  "version": "1.0.0",
+  "description": "Create, list, and remove git worktrees so parallel agents work on separate checkouts and avoid merge chaos.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "worktree",
+    "isolation",
+    "parallel",
+    "agentic"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

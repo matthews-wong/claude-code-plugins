@@ -1,0 +1,22 @@
+{
+  "name": "token-budget-tracker",
+  "version": "1.0.0",
+  "description": "A lightweight session-token-budget reminder: a non-blocking hook nudges you to check /context, plus a command to summarize usage and suggest where to trim context.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cost",
+    "governance",
+    "tokens",
+    "context",
+    "budget",
+    "hooks"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}

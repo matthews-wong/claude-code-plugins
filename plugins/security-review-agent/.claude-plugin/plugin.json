@@ -1,0 +1,20 @@
+{
+  "name": "security-review-agent",
+  "version": "1.0.0",
+  "description": "A subagent and command that review your changes for security vulnerabilities — injection, auth flaws, secrets, unsafe deserialization, SSRF, and more — with severity-ranked findings.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "code-review",
+    "vulnerabilities",
+    "subagent",
+    "appsec",
+    "owasp"
+  ],
+  "commands": ["./commands/"],
+  "agents": ["./agents/"]
+}

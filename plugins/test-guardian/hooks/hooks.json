@@ -1,0 +1,15 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": {
+        "if": "tool.name == \"Edit\" || tool.name == \"Write\""
+      },
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/run-tests.sh"
+        }
+      ]
+    }
+  ]
+}

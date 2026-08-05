@@ -1,0 +1,12 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Node (if any plugin adds tooling)
+node_modules/
+
+# Local test installs
+.claude/

@@ -1,0 +1,23 @@
+{
+  "name": "permission-optimizer",
+  "version": "1.0.0",
+  "description": "Analyze frequently denied read-only tool calls and propose a safe permissions.allow allowlist for .claude/settings.local.json.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "permissions",
+    "guardrails",
+    "allowlist",
+    "settings",
+    "read-only"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

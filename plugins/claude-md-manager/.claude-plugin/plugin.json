@@ -1,0 +1,23 @@
+{
+  "name": "claude-md-manager",
+  "version": "1.0.0",
+  "description": "Scaffold and lint project CLAUDE.md files: capture build/test commands, conventions, gotchas, and safety rules while trimming derivable bloat.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude-md",
+    "context",
+    "conventions",
+    "documentation",
+    "guardrails"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

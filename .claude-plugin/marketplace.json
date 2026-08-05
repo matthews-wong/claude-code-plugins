@@ -1,0 +1,35 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "matthews-agentic-plugins",
+  "description": "20 Claude Code plugins for agentic workflows, organized around Boris Cherny's five stages of AI adoption: verification, permissions, context, orchestration, and governance.",
+  "version": "1.0.0",
+  "owner": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    { "name": "verify-before-review", "source": "verify-before-review", "category": "verification", "keywords": ["verification", "tests", "lint", "hooks"], "description": "Run tests, lint, and build as a self-verification loop before you review changes." },
+    { "name": "code-review-agent", "source": "code-review-agent", "category": "verification", "keywords": ["code-review", "subagent"], "description": "An automated code-review subagent for your working diff, plus a /code-review command." },
+    { "name": "security-review-agent", "source": "security-review-agent", "category": "verification", "keywords": ["security", "review", "subagent"], "description": "A security-review subagent that scans changes for common vulnerabilities." },
+    { "name": "test-guardian", "source": "test-guardian", "category": "verification", "keywords": ["tests", "hooks", "tdd"], "description": "Automatically run the test suite after edits and surface failures." },
+    { "name": "e2e-verifier", "source": "e2e-verifier", "category": "verification", "keywords": ["e2e", "verification", "checklist"], "description": "A checklist-driven skill for end-to-end verification before handing work to a human." },
+    { "name": "permission-optimizer", "source": "permission-optimizer", "category": "permissions", "keywords": ["permissions", "allowlist", "settings"], "description": "Analyze denied tool calls and propose a safe allowlist to reduce permission prompts." },
+    { "name": "auto-mode-setup", "source": "auto-mode-setup", "category": "permissions", "keywords": ["auto-mode", "permissions", "settings"], "description": "Configure auto mode and pre-approve safe bash and MCP commands in settings." },
+    { "name": "plan-mode-helper", "source": "plan-mode-helper", "category": "permissions", "keywords": ["plan-mode", "planning"], "description": "Draft and refine an implementation plan before executing (plan-first workflow)." },
+    { "name": "skills-connector", "source": "skills-connector", "category": "context", "keywords": ["skills", "scaffold", "authoring"], "description": "Scaffold, list, and wire up Claude Code skills — connect new skills into your workflow." },
+    { "name": "claude-md-manager", "source": "claude-md-manager", "category": "context", "keywords": ["claude-md", "memory", "standards"], "description": "Scaffold and lint CLAUDE.md project standards and memory files." },
+    { "name": "context-puller", "source": "context-puller", "category": "context", "keywords": ["context", "docs", "memory"], "description": "Pull context from READMEs, docs, and wikis into Claude's memory for a task." },
+    { "name": "repo-onboarder", "source": "repo-onboarder", "category": "context", "keywords": ["onboarding", "subagent", "docs"], "description": "Generate an onboarding guide for a repository via an exploring subagent." },
+    { "name": "agent-kickoff", "source": "agent-kickoff", "category": "orchestration", "keywords": ["subagents", "parallel", "orchestration"], "description": "Kick off subagents to work tasks in parallel (agent-to-agent orchestration)." },
+    { "name": "worktree-isolation", "source": "worktree-isolation", "category": "orchestration", "keywords": ["git", "worktree", "isolation"], "description": "Run a task on an isolated git worktree to avoid merge conflicts between agents." },
+    { "name": "loop-runner", "source": "loop-runner", "category": "orchestration", "keywords": ["loop", "routines", "automation"], "description": "Turn a task into a recurring routine using the /loop taxonomy." },
+    { "name": "parallel-lanes", "source": "parallel-lanes", "category": "orchestration", "keywords": ["parallel", "fan-out", "lanes"], "description": "Fan out independent work across multiple parallel lanes." },
+    { "name": "routine-scheduler", "source": "routine-scheduler", "category": "orchestration", "keywords": ["schedule", "routines", "cron"], "description": "Define scheduled routines that run on a cadence." },
+    { "name": "cost-controller", "source": "cost-controller", "category": "governance", "keywords": ["cost", "model-selection", "budget"], "description": "Apply a model-selection policy — cheaper models for bulk work, frontier for judgment." },
+    { "name": "token-budget-tracker", "source": "token-budget-tracker", "category": "governance", "keywords": ["tokens", "budget", "hooks"], "description": "Track token usage per session and warn as you approach a budget." },
+    { "name": "otel-governance", "source": "otel-governance", "category": "governance", "keywords": ["otel", "telemetry", "spend-caps", "governance"], "description": "Enable OpenTelemetry export and spend caps for team governance." }
+  ]
+}

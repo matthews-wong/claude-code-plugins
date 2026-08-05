@@ -1,0 +1,23 @@
+{
+  "name": "auto-mode-setup",
+  "version": "1.0.0",
+  "description": "Guide setting permissions.defaultMode to auto in ~/.claude/settings.json and pre-approving a vetted set of safe bash and MCP commands.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "permissions",
+    "auto-mode",
+    "guardrails",
+    "settings",
+    "workflow"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
