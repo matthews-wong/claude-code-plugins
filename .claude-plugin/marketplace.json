@@ -491,6 +491,18 @@
         "memory"
       ],
       "description": "Capture a repeated mistake into CLAUDE.md or a skill so the fix persists across sessions (preserve-mistakes loop)."
+    },
+    {
+      "name": "senior-standards",
+      "source": "senior-standards",
+      "category": "boris",
+      "keywords": [
+        "code-review",
+        "standards",
+        "simplicity",
+        "quality"
+      ],
+      "description": "Boris Cherny's three engineering principles as a skill + review: simplest change, root cause, minimal blast radius."
     }
   ]
 }

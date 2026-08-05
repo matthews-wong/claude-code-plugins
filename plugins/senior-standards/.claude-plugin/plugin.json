@@ -1,0 +1,25 @@
+{
+  "name": "senior-standards",
+  "version": "1.0.0",
+  "description": "Encodes the three engineering principles documented at the bottom of Boris Cherny's CLAUDE.md: make every change minimal (prefer deleting lines to adding), find root causes with no band-aid fixes, and touch only what's necessary. Provides a skill to apply them while coding and a command to review a diff against them.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "standards",
+    "root-cause",
+    "minimal-change",
+    "quality",
+    "senior-developer",
+    "diff"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
