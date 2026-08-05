@@ -1,6 +1,6 @@
 ---
 name: onboard
-description: Explore the current repository and produce an ONBOARDING.md that captures stack, entry points, build/test/run, conventions, and gotchas.
+description: Use when new to an unfamiliar repo and need to get productive fast — explores the codebase with a read-only subagent and writes an ONBOARDING.md covering stack, entry points, build/test/run, conventions, and gotchas.
 ---
 
 Produce an `ONBOARDING.md` at the repository root that would let a new engineer
