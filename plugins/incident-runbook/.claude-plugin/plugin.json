@@ -1,0 +1,24 @@
+{
+  "name": "incident-runbook",
+  "version": "1.0.0",
+  "description": "Guide incident response end to end: severity triage, comms templates, mitigation steps, and a blameless postmortem scaffold.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "incident-response",
+    "sre",
+    "on-call",
+    "postmortem",
+    "severity",
+    "runbook"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

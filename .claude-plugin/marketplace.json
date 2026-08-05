@@ -384,6 +384,18 @@
         "quality"
       ],
       "description": "Flag when code changes make docs/README stale and suggest updates."
+    },
+    {
+      "name": "incident-runbook",
+      "source": "incident-runbook",
+      "category": "reliability",
+      "keywords": [
+        "sre",
+        "incident-response",
+        "runbook",
+        "reliability"
+      ],
+      "description": "Incident response triage, comms templates, and a blameless postmortem scaffold."
     }
   ]
 }
