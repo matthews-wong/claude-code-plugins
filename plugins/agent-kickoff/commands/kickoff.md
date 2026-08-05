@@ -1,6 +1,6 @@
 ---
 name: kickoff
-description: Decompose a task into independent subtasks, kick off a subagent for each, and synthesize their results into one answer.
+description: Use when a task is big enough to split across agents — decomposes it into independent subtasks, kicks off a subagent per subtask (in parallel when safe), and synthesizes the results into one answer.
 args: "[the task to decompose and orchestrate]"
 ---
 
