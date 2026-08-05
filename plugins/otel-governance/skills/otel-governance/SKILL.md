@@ -1,5 +1,5 @@
 ---
-description: How to enable OpenTelemetry (OTel) export of Claude Code usage telemetry and configure organizational spend governance (budgets, alerts, spend caps). Team/enterprise-oriented. Covers the observability-vs-enforcement distinction, the shape of OTel configuration, and where to find authoritative specifics. Use when setting up team-level monitoring or cost controls for Claude Code.
+description: Use when setting up team- or org-level monitoring or cost controls for Claude Code — enable OpenTelemetry (OTel/OTLP) export of usage telemetry to your own backend and configure organizational spend governance (budgets, alerts, spend caps). Team/enterprise-oriented. Covers the observability-vs-enforcement distinction, the shape of OTel configuration, and where to find authoritative specifics. Triggers on wanting usage dashboards across many seats, per-user/per-team cost attribution, budget alerts, or hard spend caps.
 ---
 
 # OTel Governance
