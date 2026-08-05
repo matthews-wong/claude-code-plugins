@@ -538,6 +538,17 @@
         "adversarial"
       ],
       "description": "A fresh-context reviewer that checks the diff against the plan — flags only correctness/requirement gaps."
+    },
+    {
+      "name": "context-cleaner",
+      "source": "context-cleaner",
+      "category": "workflow",
+      "keywords": [
+        "context",
+        "clear",
+        "session-hygiene"
+      ],
+      "description": "Spot kitchen-sink / over-correction / infinite-exploration and recommend /clear plus a better re-prompt."
     }
   ]
 }

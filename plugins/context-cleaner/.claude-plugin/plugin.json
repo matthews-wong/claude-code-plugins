@@ -1,0 +1,23 @@
+{
+  "name": "context-cleaner",
+  "version": "1.0.0",
+  "description": "Recognizes the session anti-patterns from the best-practices guide — the kitchen-sink session, correcting-over-and-over, and infinite exploration — and recommends /clear or /compact plus a better re-prompt that folds in what was learned.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "context",
+    "session",
+    "clear",
+    "compact",
+    "hygiene"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
