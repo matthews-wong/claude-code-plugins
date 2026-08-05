@@ -1,0 +1,25 @@
+{
+  "name": "mistake-logger",
+  "version": "1.0.0",
+  "description": "Captures a lesson from a repeated mistake and persists it so it survives future sessions: a one-off fact becomes a lean CLAUDE.md rule, a repeatable procedure becomes a skill. Modeled on Boris Cherny's practice of preserving mistakes so agents learn across sessions.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "memory",
+    "claude-md",
+    "skills",
+    "lessons",
+    "mistakes",
+    "retrospective"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

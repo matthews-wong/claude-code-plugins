@@ -479,6 +479,18 @@
         "cleanup"
       ],
       "description": "Boris Cherny's code-simplifier subagent — simplify the working diff after Claude is done; prefer deleting lines to adding."
+    },
+    {
+      "name": "mistake-logger",
+      "source": "mistake-logger",
+      "category": "boris",
+      "keywords": [
+        "claude-md",
+        "learning",
+        "skills",
+        "memory"
+      ],
+      "description": "Capture a repeated mistake into CLAUDE.md or a skill so the fix persists across sessions (preserve-mistakes loop)."
     }
   ]
 }
