@@ -1,0 +1,23 @@
+{
+  "name": "adr-manager",
+  "version": "1.0.0",
+  "description": "Create and manage Architecture Decision Records using a MADR-style template, with commands to author a new ADR and list existing ones.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "adr",
+    "architecture",
+    "decision-record",
+    "madr",
+    "documentation"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
