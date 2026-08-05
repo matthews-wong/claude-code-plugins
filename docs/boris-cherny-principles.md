@@ -67,6 +67,20 @@ From his appearance on *Lenny's Podcast* (reported by Business Insider): *"What'
 
 Kitchen-sink sessions, correcting-over-and-over, the over-specified CLAUDE.md, the trust-then-verify gap, and infinite exploration — each with a fix (`/clear`, prune CLAUDE.md, always verify, scope with subagents). This marketplace turns those fixes into installable guardrails.
 
+## Deeper cuts (from his Feb 2026 long-form interviews)
+
+On [Lenny's Podcast](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens) and [The Pragmatic Engineer](https://newsletter.pragmaticengineer.com/p/building-claude-code-with-boris-cherny), Cherny went further:
+
+- **He doesn't hand-write code anymore.** *"100% of my code is written by Claude Code. I have not edited a single line by hand since November."* The job became steering, reviewing, and verifying — not typing.
+- **Plan, then one-shot.** *"Once there is a good plan, it will one-shot the implementation almost every time."* The leverage is in the plan, not the keystrokes. → `plan-mode-helper`, `spec-writer`.
+- **Simplicity beats machinery — even in the tool itself.** Claude Code's search is *just glob + grep driven by the model*; the team tried vector databases and recursive indexing and abandoned them (stale indexes, permission issues). Plain text won. A direct endorsement of the delete-lines/minimal-machinery ethos in `senior-standards` and `code-simplifier`.
+- **Finish your migrations.** *"Always make sure that when you start a migration, you finish the migration"* — partial migrations confuse humans and AI alike. → `fan-out-migrate` is built to run a migration to completion across every file.
+- **Turn repeated review comments into rules.** Before AI, he logged repetitive review comments in a spreadsheet and, once a pattern appeared 3–4 times, wrote a lint rule to stop repeating it. That's exactly the loop `mistake-logger` + `standards-enforcer` automate — capture the lesson, encode it, move on.
+- **Prototypes over PRDs.** His team ditched PRDs and builds dozens of working prototypes instead. → why `spec-writer` produces a *runnable* spec ending in a verification step, not a doc for its own sake.
+- **The role is changing.** *"Everyone's going to be a product manager and everyone codes… 'software engineer' is going to be replaced by 'builder.'"* The skill that matters becomes rapid context-switching and orchestrating parallel agents — the whole orchestration category here.
+
+_Scale note:_ Claude Code reportedly reached ~4% of public GitHub commits with daily-active users doubling month-over-month (Lenny's, Feb 2026) — the practices above aren't niche.
+
 ## Sources
 
 - [Claude Code: best practices for agentic coding](https://code.claude.com/docs/en/best-practices) (Anthropic / Cherny's team) — the primary, authoritative guide
