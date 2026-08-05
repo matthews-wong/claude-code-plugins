@@ -1,0 +1,25 @@
+{
+  "name": "test-coverage-gate",
+  "version": "1.0.0",
+  "description": "Run the project's test coverage and gate against a configurable threshold, warning or failing when coverage drops below the bar.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "coverage",
+    "testing",
+    "quality-gate",
+    "pytest-cov",
+    "nyc",
+    "go-cover"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}

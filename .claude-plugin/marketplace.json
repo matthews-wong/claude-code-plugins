@@ -349,6 +349,18 @@
         "process"
       ],
       "description": "Guide a repeatable release: semver bump, tag, notes, and a pre-flight checklist."
+    },
+    {
+      "name": "test-coverage-gate",
+      "source": "test-coverage-gate",
+      "category": "quality",
+      "keywords": [
+        "testing",
+        "coverage",
+        "ci",
+        "hooks"
+      ],
+      "description": "Run coverage and gate below a configurable threshold (pytest-cov/nyc/go)."
     }
   ]
 }
