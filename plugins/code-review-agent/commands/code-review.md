@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Review the current working changes (git diff) for bugs, edge cases, and quality, and report concise, actionable findings.
+description: Review the current working changes (git diff) for bugs, edge cases, and quality, reporting concise findings grouped by severity. Use when reviewing your uncommitted diff before a commit, before opening a PR, or before handing changes to a human reviewer.
 args:
   - name: range
     description: Optional git ref or range to review (e.g. "main", "HEAD~3"). Defaults to the working diff (staged + unstaged).
