@@ -1,0 +1,23 @@
+{
+  "name": "spec-writer",
+  "version": "1.0.0",
+  "description": "Interviews you about a feature — technical implementation, UI/UX, edge cases, tradeoffs — using structured questions, then writes a self-contained SPEC.md that names files and interfaces, states what's out of scope, and ends with an end-to-end verification step.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "spec",
+    "planning",
+    "interview",
+    "requirements",
+    "design"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

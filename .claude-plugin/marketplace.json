@@ -515,6 +515,18 @@
         "testing"
       ],
       "description": "Boris's e2e-verification subagent — run the app, exercise real flows, and report PASS/FAIL with captured evidence."
+    },
+    {
+      "name": "spec-writer",
+      "source": "spec-writer",
+      "category": "workflow",
+      "keywords": [
+        "planning",
+        "spec",
+        "interview",
+        "requirements"
+      ],
+      "description": "Interview you via AskUserQuestion and write a self-contained SPEC.md to execute in a fresh session."
     }
   ]
 }
