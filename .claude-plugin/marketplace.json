@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "matthews-agentic-plugins",
-  "description": "20 Claude Code plugins for agentic workflows, organized around Boris Cherny's five stages of AI adoption: verification, permissions, context, orchestration, and governance.",
-  "version": "1.0.0",
+  "description": "40 Claude Code plugins for agentic workflows and enterprise engineering — verification, permissions, context, orchestration, governance, security, compliance, and quality.",
+  "version": "2.0.0",
   "owner": {
     "name": "Matthews Wong",
     "url": "https://github.com/matthews-wong"
