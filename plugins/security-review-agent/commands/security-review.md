@@ -1,6 +1,6 @@
 ---
 name: security-review
-description: Review the current working changes for security vulnerabilities and report severity-ranked, actionable findings.
+description: Review the current working changes for security vulnerabilities — injection, XSS, auth flaws, secrets, SSRF, unsafe deserialization, path traversal — and report severity-ranked, actionable findings. Use before committing or merging security-relevant changes, or when auditing a diff for exploitable flaws.
 args:
   - name: range
     description: Optional git ref or range to review (e.g. "main", "HEAD~3"). Defaults to the working diff (staged + unstaged).
