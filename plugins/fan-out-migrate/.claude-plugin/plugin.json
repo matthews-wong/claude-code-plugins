@@ -1,0 +1,24 @@
+{
+  "name": "fan-out-migrate",
+  "version": "1.0.0",
+  "description": "Fan a repetitive migration out across many files: generate a task list to a file, then loop headless claude -p over each file with tightly scoped --allowedTools. Test on 2–3 files first, then run at scale.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "migration",
+    "fan-out",
+    "batch",
+    "headless",
+    "codemod",
+    "automation"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

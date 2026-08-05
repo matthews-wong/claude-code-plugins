@@ -549,6 +549,18 @@
         "session-hygiene"
       ],
       "description": "Spot kitchen-sink / over-correction / infinite-exploration and recommend /clear plus a better re-prompt."
+    },
+    {
+      "name": "fan-out-migrate",
+      "source": "fan-out-migrate",
+      "category": "workflow",
+      "keywords": [
+        "migration",
+        "fan-out",
+        "headless",
+        "batch"
+      ],
+      "description": "Large-migration fan-out: generate a file list, loop scoped claude -p per file, sample before scaling."
     }
   ]
 }
