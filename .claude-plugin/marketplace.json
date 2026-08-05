@@ -503,6 +503,18 @@
         "quality"
       ],
       "description": "Boris Cherny's three engineering principles as a skill + review: simplest change, root cause, minimal blast radius."
+    },
+    {
+      "name": "verify-app",
+      "source": "verify-app",
+      "category": "workflow",
+      "keywords": [
+        "verification",
+        "e2e",
+        "subagent",
+        "testing"
+      ],
+      "description": "Boris's e2e-verification subagent — run the app, exercise real flows, and report PASS/FAIL with captured evidence."
     }
   ]
 }

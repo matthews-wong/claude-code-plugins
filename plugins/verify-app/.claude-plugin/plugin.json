@@ -1,0 +1,24 @@
+{
+  "name": "verify-app",
+  "version": "1.0.0",
+  "description": "End-to-end verification subagent that actually runs the app or build, exercises the happy path and key flows, captures the real output as evidence, and reports PASS or FAIL — never a bare assertion of success.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "verification",
+    "end-to-end",
+    "evidence",
+    "testing",
+    "subagent",
+    "happy-path"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "agents": [
+    "./agents/"
+  ]
+}
