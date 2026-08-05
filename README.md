@@ -1,14 +1,14 @@
 # 🤖 Agentic Claude Code Plugins
 
-> A marketplace of **43 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
+> A marketplace of **48 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
 
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugins-D97757?logo=anthropic&logoColor=white)
-![Plugins](https://img.shields.io/badge/plugins-43-6f42c1)
+![Plugins](https://img.shields.io/badge/plugins-48-6f42c1)
 ![Agentic Workflows](https://img.shields.io/badge/focus-agentic%20workflows-1f883d)
 ![Enterprise Ready](https://img.shields.io/badge/enterprise-ready-0A66C2)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 43 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
+I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 48 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
 
 📖 **New here?** Read [How to write a good plugin](./docs/writing-good-plugins.md) and [How plugins create lean, structured context](./docs/lean-structured-context.md) — the research behind this marketplace.
 
@@ -41,7 +41,7 @@ The plugin categories map to the maturity model from **Boris Cherny's "Steps to 
 
 > Cherny's honesty test for what to automate at Step 3: *"Is this something an engineer would have done?"* — and his caution that **behavior, not your license SKU, determines your stage.** These plugins are the small, concrete guardrails that make each step-up stick.
 
-## 📦 The 20 plugins
+## 📦 Core plugins — agentic adoption (20)
 
 ### ✅ Verification & review — *give Claude end-to-end verification before a human sees the output*
 | Plugin | What it installs |
@@ -122,6 +122,18 @@ Beyond the agentic-adoption core, an enterprise layer for teams that need securi
 | Plugin | What it installs |
 | --- | --- |
 | [**context-budget**](./plugins/context-budget) | ⭐ `/context-audit` — audit `CLAUDE.md` and skills for bloat and enforce lean, structured context via progressive disclosure. |
+
+## 🔁 Workflow patterns
+
+Packaged straight from Anthropic's official *Claude Code best practices* guide.
+
+| Plugin | What it installs |
+| --- | --- |
+| [**verify-app**](./plugins/verify-app) | An e2e-verification subagent that runs the app, exercises real flows, and reports PASS/FAIL with evidence. |
+| [**spec-writer**](./plugins/spec-writer) | `/spec` — interviews you (via AskUserQuestion) and writes a self-contained `SPEC.md` to execute in a fresh session. |
+| [**writer-reviewer**](./plugins/writer-reviewer) | `/review-fresh` — a fresh-context reviewer that checks the diff against the plan, flagging only correctness/requirement gaps. |
+| [**context-cleaner**](./plugins/context-cleaner) | Spot the kitchen-sink / over-correction / infinite-exploration traps and recommend `/clear` + a better re-prompt. |
+| [**fan-out-migrate**](./plugins/fan-out-migrate) | The large-migration fan-out: generate a file list, loop scoped `claude -p` per file, sample before scaling. |
 
 ## 🧑‍💻 Modeled on Boris Cherny's workflow
 
