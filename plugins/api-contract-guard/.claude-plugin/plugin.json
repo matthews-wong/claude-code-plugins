@@ -1,0 +1,24 @@
+{
+  "name": "api-contract-guard",
+  "version": "1.0.0",
+  "description": "Diff an OpenAPI or JSON schema against a baseline to classify backward-compatibility as breaking or non-breaking before you ship it.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "openapi",
+    "json-schema",
+    "backward-compatibility",
+    "api-versioning",
+    "contract-testing",
+    "breaking-changes"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

@@ -361,6 +361,18 @@
         "hooks"
       ],
       "description": "Run coverage and gate below a configurable threshold (pytest-cov/nyc/go)."
+    },
+    {
+      "name": "api-contract-guard",
+      "source": "api-contract-guard",
+      "category": "quality",
+      "keywords": [
+        "api",
+        "openapi",
+        "compatibility",
+        "quality"
+      ],
+      "description": "Check API backward compatibility by diffing OpenAPI/JSON schemas."
     }
   ]
 }
