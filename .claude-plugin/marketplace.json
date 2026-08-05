@@ -455,6 +455,18 @@
         "quality"
       ],
       "description": "Check a diff against your org coding-standards profile."
+    },
+    {
+      "name": "context-budget",
+      "source": "context-budget",
+      "category": "context",
+      "keywords": [
+        "context-engineering",
+        "claude-md",
+        "skills",
+        "progressive-disclosure"
+      ],
+      "description": "Audit CLAUDE.md and skills for bloat and enforce lean, structured context via progressive disclosure."
     }
   ]
 }

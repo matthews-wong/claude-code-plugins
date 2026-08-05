@@ -1,0 +1,25 @@
+{
+  "name": "context-budget",
+  "version": "1.0.0",
+  "description": "Audit CLAUDE.md and skills for bloat, enforce lean always-loaded context, and restructure heavy guidance into on-demand skills via progressive disclosure.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "context-engineering",
+    "claude-md",
+    "skills",
+    "progressive-disclosure",
+    "token-budget",
+    "prompt-engineering"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}
