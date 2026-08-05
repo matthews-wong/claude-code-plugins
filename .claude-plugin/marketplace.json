@@ -301,6 +301,18 @@
         "standards"
       ],
       "description": "Enforce enterprise PR standards: description, linked ticket, size, tests, no unrelated changes."
+    },
+    {
+      "name": "conventional-commits",
+      "source": "conventional-commits",
+      "category": "governance",
+      "keywords": [
+        "git",
+        "commits",
+        "conventional-commits",
+        "hooks"
+      ],
+      "description": "Format and enforce Conventional Commits with a validation hook."
     }
   ]
 }
