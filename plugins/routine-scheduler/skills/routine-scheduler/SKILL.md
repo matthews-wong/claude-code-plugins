@@ -1,5 +1,5 @@
 ---
-description: How to define scheduled routines in Claude Code — cron-style cloud agents that run a task on a recurring cadence. Covers cadence selection, guardrails for unattended execution, self-contained task prompts, and worked examples (nightly PR triage, dependency-update check). Use when setting up recurring automated agent work.
+description: Use when setting up recurring, unattended automation in Claude Code — a scheduled routine (cron-style cloud agent) that runs a task on a cadence like nightly or weekly without a human starting the session. Covers cadence selection, guardrails for unattended runs, self-contained task prompts, and worked examples (nightly PR triage, weekly dependency-update check). Triggers on wanting to schedule a routine, set up a cron job, run something every night/week, create a recurring agent, or automate periodic triage.
 ---
 
 # Routine Scheduler
