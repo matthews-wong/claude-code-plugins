@@ -373,6 +373,17 @@
         "quality"
       ],
       "description": "Check API backward compatibility by diffing OpenAPI/JSON schemas."
+    },
+    {
+      "name": "docs-guardian",
+      "source": "docs-guardian",
+      "category": "quality",
+      "keywords": [
+        "documentation",
+        "hooks",
+        "quality"
+      ],
+      "description": "Flag when code changes make docs/README stale and suggest updates."
     }
   ]
 }

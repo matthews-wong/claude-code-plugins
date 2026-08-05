@@ -1,0 +1,25 @@
+{
+  "name": "docs-guardian",
+  "version": "1.0.0",
+  "description": "Flag when source changes likely make docs, README, or API references stale and suggest the specific doc updates needed.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "documentation",
+    "docs-drift",
+    "readme",
+    "stale-docs",
+    "changelog",
+    "quality"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}
