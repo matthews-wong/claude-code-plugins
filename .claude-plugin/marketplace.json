@@ -242,6 +242,18 @@
         "compliance"
       ],
       "description": "Detect likely secrets (API keys, tokens, private keys) in the working diff before they're shared."
+    },
+    {
+      "name": "dependency-auditor",
+      "source": "dependency-auditor",
+      "category": "security",
+      "keywords": [
+        "security",
+        "dependencies",
+        "vulnerabilities",
+        "audit"
+      ],
+      "description": "Audit dependencies for known vulnerabilities using the ecosystem's native tools."
     }
   ]
 }

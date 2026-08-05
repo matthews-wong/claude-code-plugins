@@ -1,0 +1,24 @@
+{
+  "name": "dependency-auditor",
+  "version": "1.0.0",
+  "description": "Guides a dependency vulnerability audit using each ecosystem's native tooling (npm audit, pip-audit, cargo audit, govulncheck) and helps triage the results without fabricating CVE data.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "dependencies",
+    "vulnerabilities",
+    "audit",
+    "cve",
+    "compliance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
