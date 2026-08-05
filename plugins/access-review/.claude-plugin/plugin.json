@@ -1,0 +1,24 @@
+{
+  "name": "access-review",
+  "version": "1.0.0",
+  "description": "Reviews IAM/RBAC/permission changes in a diff for over-broad grants, wildcards, and privilege escalation using a read-only subagent, and reports risks by severity.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "iam",
+    "rbac",
+    "least-privilege",
+    "access-control",
+    "compliance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "agents": [
+    "./agents/"
+  ]
+}

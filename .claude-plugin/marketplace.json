@@ -278,6 +278,18 @@
         "cyclonedx"
       ],
       "description": "Generate a CycloneDX/SPDX Software Bill of Materials for your project."
+    },
+    {
+      "name": "access-review",
+      "source": "access-review",
+      "category": "security",
+      "keywords": [
+        "security",
+        "iam",
+        "rbac",
+        "review"
+      ],
+      "description": "A read-only subagent that reviews IAM/RBAC/permission changes for over-broad grants and escalation."
     }
   ]
 }
