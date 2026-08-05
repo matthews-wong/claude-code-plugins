@@ -4,6 +4,15 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] — 2026-08
+
+### Changed
+- **Deepened the flagship plugins** with worked, on-demand reference examples (progressive disclosure):
+  - `skills-connector` — SKILL.md anatomy, good-vs-bad routing descriptions, an authoring checklist, and a copyable worked example.
+  - `context-budget` — a before/after CLAUDE.md transformation, the context-budget token math, and the `/context-audit` checklist.
+  - `verify-app` — verification playbooks (web app / HTTP API / CLI / worker) and an evidence-report template.
+- **Expanded the Boris Cherny playbook** (`docs/boris-cherny-principles.md`) with insights from his Feb 2026 Lenny's Podcast and Pragmatic Engineer interviews.
+
 ## [2.2.0] — 2026-08
 
 ### Added
