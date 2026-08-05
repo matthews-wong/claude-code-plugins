@@ -420,6 +420,18 @@
         "compliance"
       ],
       "description": "Classify data (public/internal/confidential/PII) and recommend handling."
+    },
+    {
+      "name": "compliance-checklist",
+      "source": "compliance-checklist",
+      "category": "compliance",
+      "keywords": [
+        "compliance",
+        "soc2",
+        "iso27001",
+        "governance"
+      ],
+      "description": "A pre-release control checklist mapped to SOC 2 / ISO 27001 categories."
     }
   ]
 }
