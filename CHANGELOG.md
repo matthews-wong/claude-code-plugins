@@ -4,6 +4,15 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] — 2026-08
+
+### Added
+- **5 workflow-pattern plugins** packaged from the official Claude Code best-practices guide: `verify-app` (e2e-verification subagent), `spec-writer` (interview → SPEC.md), `writer-reviewer` (fresh-context adversarial review), `context-cleaner` (`/clear` hygiene), and `fan-out-migrate` (headless fan-out migrations).
+- **Docs index** (`docs/README.md`) and a **quickstart** (`examples/quickstart.md`) with suggested plugin bundles by goal.
+
+### Changed
+- Marketplace now ships **48 plugins**; bumped to `2.2.0`.
+
 ## [2.1.0] — 2026-08
 
 ### Added
