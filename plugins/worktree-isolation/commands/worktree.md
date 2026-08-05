@@ -1,6 +1,6 @@
 ---
 name: worktree
-description: Create, list, or remove a git worktree so an agent can work on an isolated checkout without disturbing the main working tree.
+description: Use when parallel or agent work needs an isolated checkout — create, list, or remove a git worktree (sibling directory on its own branch) so edits never collide with the main working tree.
 args: "[add <branch> | list | remove <branch>]"
 ---
 
