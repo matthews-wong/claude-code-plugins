@@ -1,0 +1,23 @@
+{
+  "name": "writer-reviewer",
+  "version": "1.0.0",
+  "description": "Adds an adversarial fresh-context review step: after implementing, a reviewer with no memory of writing the code checks the diff against the plan and requirements — flagging only gaps that affect correctness or stated requirements, not over-engineering wishlist items.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "review",
+    "adversarial",
+    "fresh-context",
+    "diff",
+    "code-review"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

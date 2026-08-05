@@ -527,6 +527,17 @@
         "requirements"
       ],
       "description": "Interview you via AskUserQuestion and write a self-contained SPEC.md to execute in a fresh session."
+    },
+    {
+      "name": "writer-reviewer",
+      "source": "writer-reviewer",
+      "category": "workflow",
+      "keywords": [
+        "code-review",
+        "fresh-context",
+        "adversarial"
+      ],
+      "description": "A fresh-context reviewer that checks the diff against the plan — flags only correctness/requirement gaps."
     }
   ]
 }
