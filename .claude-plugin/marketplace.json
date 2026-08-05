@@ -290,6 +290,17 @@
         "review"
       ],
       "description": "A read-only subagent that reviews IAM/RBAC/permission changes for over-broad grants and escalation."
+    },
+    {
+      "name": "pr-governance",
+      "source": "pr-governance",
+      "category": "governance",
+      "keywords": [
+        "governance",
+        "pull-requests",
+        "standards"
+      ],
+      "description": "Enforce enterprise PR standards: description, linked ticket, size, tests, no unrelated changes."
     }
   ]
 }

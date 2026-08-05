@@ -1,0 +1,23 @@
+{
+  "name": "pr-governance",
+  "version": "1.0.0",
+  "description": "Enforces enterprise pull request standards: clear description, linked issue, reasonable size, tests, and no unrelated changes, producing a checklist verdict.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "pull-request",
+    "code-review",
+    "governance",
+    "standards",
+    "enterprise"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
