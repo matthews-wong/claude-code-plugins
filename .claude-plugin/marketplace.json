@@ -337,6 +337,18 @@
         "governance"
       ],
       "description": "Maintain a Keep-a-Changelog CHANGELOG from Conventional Commit history."
+    },
+    {
+      "name": "release-manager",
+      "source": "release-manager",
+      "category": "governance",
+      "keywords": [
+        "release",
+        "semver",
+        "governance",
+        "process"
+      ],
+      "description": "Guide a repeatable release: semver bump, tag, notes, and a pre-flight checklist."
     }
   ]
 }

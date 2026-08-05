@@ -1,0 +1,23 @@
+{
+  "name": "release-manager",
+  "version": "1.0.0",
+  "description": "Guides a repeatable release process: semver bump decision, changelog promotion, tag, release notes, and a pre-flight checklist for the human or agent driving the release.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "release",
+    "semver",
+    "versioning",
+    "changelog",
+    "governance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
