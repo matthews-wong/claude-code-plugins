@@ -408,6 +408,18 @@
         "security"
       ],
       "description": "Policy-as-code checks for IaC (Conftest/OPA, tfsec/checkov): public buckets, open SGs, missing encryption."
+    },
+    {
+      "name": "data-classification",
+      "source": "data-classification",
+      "category": "compliance",
+      "keywords": [
+        "data",
+        "pii",
+        "privacy",
+        "compliance"
+      ],
+      "description": "Classify data (public/internal/confidential/PII) and recommend handling."
     }
   ]
 }
