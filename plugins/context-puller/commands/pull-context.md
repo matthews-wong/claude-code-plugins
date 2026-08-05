@@ -1,6 +1,6 @@
 ---
 name: pull-context
-description: Gather the relevant context for an upcoming task and summarize it into a grounded working brief.
+description: Use before starting a non-trivial task — pulls repo context (README, docs, ADRs, related modules, git history) into a short working brief so you act on facts, not guesses. Triggers on 'get me up to speed', 'brief before I start', 'pull context'.
 args: "[task description or area of the codebase to focus on]"
 ---
 
