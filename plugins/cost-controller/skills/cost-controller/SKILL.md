@@ -1,5 +1,5 @@
 ---
-description: A model-selection cost policy for Claude Code — route bulk, mechanical work to cheaper/faster models and reserve frontier models for judgment and review. Covers the cost/quality tradeoff, a decision matrix, how to switch models per task and per subagent, and orchestration patterns that minimize total cost to a correct result. Use when deciding which model to run or how to control spend.
+description: Use when deciding which model to run for a task or how to cut Claude Code spend — a cost policy that routes bulk, mechanical work to cheaper/faster models (Haiku-class) and reserves frontier models (Opus-class) for judgment and review. Covers the cost/quality tradeoff, a decision matrix, how to switch models per task and per subagent, and orchestration patterns that minimize total cost to a correct result. Triggers on choosing between Haiku/Sonnet/Opus, reducing token cost, picking a cheaper model, or using /model to control spend.
 ---
 
 # Cost Controller
