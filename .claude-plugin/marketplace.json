@@ -467,6 +467,18 @@
         "progressive-disclosure"
       ],
       "description": "Audit CLAUDE.md and skills for bloat and enforce lean, structured context via progressive disclosure."
+    },
+    {
+      "name": "code-simplifier",
+      "source": "code-simplifier",
+      "category": "boris",
+      "keywords": [
+        "simplify",
+        "refactor",
+        "subagent",
+        "cleanup"
+      ],
+      "description": "Boris Cherny's code-simplifier subagent — simplify the working diff after Claude is done; prefer deleting lines to adding."
     }
   ]
 }

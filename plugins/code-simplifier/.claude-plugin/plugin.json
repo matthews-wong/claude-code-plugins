@@ -1,0 +1,25 @@
+{
+  "name": "code-simplifier",
+  "version": "1.0.0",
+  "description": "A subagent and command that simplify recently-changed code after Claude is done: delete dead code, reduce indirection, and prefer removing lines over adding them, without changing behavior. Modeled on Boris Cherny's code-simplifier workflow.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "simplify",
+    "refactor",
+    "cleanup",
+    "dead-code",
+    "code-review",
+    "subagent",
+    "diff"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "agents": [
+    "./agents/"
+  ]
+}
