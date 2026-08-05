@@ -4,6 +4,16 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] — 2026-08
+
+### Added
+- **3 plugins modeled on Boris Cherny's documented workflow**: `code-simplifier` (his own subagent), `mistake-logger` (the preserve-mistakes loop), and `senior-standards` (his three engineering principles).
+- **Research doc** `docs/boris-cherny-principles.md` — how Claude Code's creator uses it, with each plugin mapped to a practice, heavily sourced.
+
+### Changed
+- Marketplace now ships **43 plugins**; bumped to `2.1.0`.
+- Refined the original 20 plugins with sharper routing descriptions and fixed hook `matcher` fields to the correct string form.
+
 ## [2.0.0] — 2026-08
 
 ### Added
