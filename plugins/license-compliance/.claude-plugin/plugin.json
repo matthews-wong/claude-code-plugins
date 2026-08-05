@@ -1,0 +1,24 @@
+{
+  "name": "license-compliance",
+  "version": "1.0.0",
+  "description": "Inventories dependency licenses, explains SPDX identifiers, and flags licenses that fall outside a configurable allowlist (e.g. copyleft licenses in a proprietary codebase).",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "license",
+    "compliance",
+    "spdx",
+    "open-source",
+    "legal",
+    "governance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

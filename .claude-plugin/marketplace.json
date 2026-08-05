@@ -254,6 +254,18 @@
         "audit"
       ],
       "description": "Audit dependencies for known vulnerabilities using the ecosystem's native tools."
+    },
+    {
+      "name": "license-compliance",
+      "source": "license-compliance",
+      "category": "compliance",
+      "keywords": [
+        "compliance",
+        "licenses",
+        "spdx",
+        "legal"
+      ],
+      "description": "Inventory dependency licenses and flag ones outside your allowlist (SPDX)."
     }
   ]
 }
