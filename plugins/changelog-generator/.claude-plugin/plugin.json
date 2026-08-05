@@ -1,0 +1,23 @@
+{
+  "name": "changelog-generator",
+  "version": "1.0.0",
+  "description": "Maintains a Keep a Changelog CHANGELOG.md by translating Conventional Commit history into Added, Changed, Fixed, Deprecated, Removed, and Security sections.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "changelog",
+    "keep-a-changelog",
+    "conventional-commits",
+    "release",
+    "documentation"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

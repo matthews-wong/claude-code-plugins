@@ -325,6 +325,18 @@
         "governance"
       ],
       "description": "Create and manage Architecture Decision Records (MADR-style)."
+    },
+    {
+      "name": "changelog-generator",
+      "source": "changelog-generator",
+      "category": "governance",
+      "keywords": [
+        "changelog",
+        "releases",
+        "git",
+        "governance"
+      ],
+      "description": "Maintain a Keep-a-Changelog CHANGELOG from Conventional Commit history."
     }
   ]
 }
