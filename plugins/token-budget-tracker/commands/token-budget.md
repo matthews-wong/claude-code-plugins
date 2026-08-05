@@ -1,6 +1,6 @@
 ---
 name: token-budget
-description: Summarize the current session's token/context usage and suggest concrete places to trim context to stay within budget.
+description: Use when a session feels heavy, slow, or near its context limit, or before deciding to /compact or /clear — summarizes what is filling the context window (from /context) and gives prioritized, concrete steps to trim it and stay within budget.
 ---
 
 You are producing a token-budget summary for the current session. The goal is to
