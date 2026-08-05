@@ -41,5 +41,8 @@ This skill applies the principle to itself: the detailed heuristics live in refe
 
 ## References (load on demand)
 
-- `reference/bloat-heuristics.md` — full CUT/KEEP catalog, section-by-section scoring, token estimation, and worked before/after examples.
+- `reference/before-after.md` — a full worked transformation: a bloated ~200-line CLAUDE.md turned into a lean ~40-line core, shown as a diff, with each cut/move explained (~85% resident-token cut, no info lost).
+- `reference/token-math.md` — the budget ledger: resident-at-startup vs load-on-demand per strategy (big CLAUDE.md, lean+skills, path-scoped rules, subagent, deferred MCP), % of budget lost, and why routing degrades as context fills.
+- `reference/audit-checklist.md` — the `/context-audit` procedure step by step: what to measure, the keep-vs-cut test, and how to relocate procedures into skills and directory guidance into `.claude/rules/*.md`.
+- `reference/bloat-heuristics.md` — full CUT/KEEP catalog, section-by-section scoring, and token estimation.
 - `reference/progressive-disclosure.md` — how skill routing and loading actually work, writing high-signal descriptions, and the CLAUDE.md → skill → reference layering pattern.
