@@ -443,6 +443,18 @@
         "governance"
       ],
       "description": "Scaffold and validate a GitHub CODEOWNERS file so critical paths are owned."
+    },
+    {
+      "name": "standards-enforcer",
+      "source": "standards-enforcer",
+      "category": "governance",
+      "keywords": [
+        "standards",
+        "linting",
+        "governance",
+        "quality"
+      ],
+      "description": "Check a diff against your org coding-standards profile."
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "name": "standards-enforcer",
+  "version": "1.0.0",
+  "description": "Check a diff against an editable org coding-standards profile: naming, file organization, error handling, no secrets or stray prints, and docstrings on public APIs.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "coding-standards",
+    "linting",
+    "code-review",
+    "conventions",
+    "governance"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
