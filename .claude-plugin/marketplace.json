@@ -609,6 +609,18 @@
         "schema"
       ],
       "description": "Review a schema migration for safety — expand-contract, avoid long locks, nullable-first then backfill."
+    },
+    {
+      "name": "accessibility-audit",
+      "source": "accessibility-audit",
+      "category": "quality",
+      "keywords": [
+        "accessibility",
+        "a11y",
+        "wcag",
+        "frontend"
+      ],
+      "description": "Audit UI/markup for WCAG 2.2 AA basics — alt text, labels, contrast, keyboard nav, ARIA."
     }
   ]
 }

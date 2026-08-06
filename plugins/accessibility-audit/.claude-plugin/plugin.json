@@ -1,0 +1,21 @@
+{
+  "name": "accessibility-audit",
+  "version": "1.0.0",
+  "description": "Audit UI markup and components against WCAG 2.2 AA basics: text alternatives, form labels, color contrast, keyboard operability, focus order and visibility, ARIA misuse, and semantic HTML. Reports issues mapped to success criteria with concrete fixes.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "screen-reader",
+    "aria",
+    "inclusive-design"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
