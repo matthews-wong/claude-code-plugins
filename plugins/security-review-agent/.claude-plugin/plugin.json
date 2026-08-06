@@ -16,5 +16,6 @@
     "owasp"
   ],
   "commands": ["./commands/"],
-  "agents": ["./agents/"]
+  "agents": ["./agents/"],
+  "skills": ["./skills/"]
 }
