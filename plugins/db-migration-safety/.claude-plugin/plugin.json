@@ -1,0 +1,22 @@
+{
+  "name": "db-migration-safety",
+  "version": "1.0.0",
+  "description": "Review a database schema migration for zero-downtime safety: expand-contract sequencing, backward compatibility, avoiding long table locks, nullable-first-then-backfill, concurrent index creation, and no destructive drops before deploy.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "database",
+    "migration",
+    "schema",
+    "zero-downtime",
+    "expand-contract",
+    "postgres",
+    "mysql"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
