@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "matthews-agentic-plugins",
-  "description": "48 Claude Code plugins for agentic workflows and enterprise engineering — verification, permissions, context, orchestration, governance, security, compliance, quality, workflow patterns, and plugins modeled on Boris Cherny's documented workflow.",
-  "version": "2.2.1",
+  "description": "53 Claude Code plugins for agentic workflows and enterprise engineering — every plugin ships an auto-invocable skill. Covers verification, permissions, context, orchestration, governance, security, compliance, quality, and workflow patterns.",
+  "version": "2.3.0",
   "owner": {
     "name": "Matthews Wong",
     "url": "https://github.com/matthews-wong"
