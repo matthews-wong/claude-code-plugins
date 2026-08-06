@@ -16,5 +16,6 @@
     "self-review"
   ],
   "commands": ["./commands/"],
-  "agents": ["./agents/"]
+  "agents": ["./agents/"],
+  "skills": ["./skills/"]
 }
