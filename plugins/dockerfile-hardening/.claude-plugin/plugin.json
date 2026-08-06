@@ -1,0 +1,21 @@
+{
+  "name": "dockerfile-hardening",
+  "version": "1.0.0",
+  "description": "Review or generate hardened, production-grade Dockerfiles: non-root user, pinned base image with digest, multi-stage minimal builds, no embedded secrets, HEALTHCHECK, dropped capabilities, and small attack surface.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "docker",
+    "dockerfile",
+    "container-security",
+    "image-hardening",
+    "supply-chain",
+    "devsecops"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

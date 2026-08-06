@@ -573,6 +573,18 @@
         "design-review"
       ],
       "description": "STRIDE threat modeling for a feature or design — auto-invokes on threat model, attack surface, security design review."
+    },
+    {
+      "name": "dockerfile-hardening",
+      "source": "dockerfile-hardening",
+      "category": "security",
+      "keywords": [
+        "docker",
+        "security",
+        "hardening",
+        "containers"
+      ],
+      "description": "Review or generate hardened Dockerfiles — non-root, pinned base, minimal layers, no secrets, healthcheck."
     }
   ]
 }
