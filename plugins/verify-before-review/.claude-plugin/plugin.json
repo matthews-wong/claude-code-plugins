@@ -16,5 +16,6 @@
     "hooks"
   ],
   "commands": ["./commands/"],
+  "skills": ["./skills/"],
   "hooks": "./hooks/hooks.json"
 }
