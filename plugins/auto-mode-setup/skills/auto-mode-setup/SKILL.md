@@ -1,4 +1,5 @@
 ---
+name: auto-mode-setup
 description: Use when a user wants to enable or understand Claude Code's auto permission mode. Explains permissions.defaultMode "auto" honestly (a safety classifier approves routine actions and falls back to default mode if unavailable), and helps configure ~/.claude/settings.json with a vetted allow set and a deny floor.
 ---
 

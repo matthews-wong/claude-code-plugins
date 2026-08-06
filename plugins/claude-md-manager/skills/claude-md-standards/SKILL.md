@@ -1,4 +1,5 @@
 ---
+name: claude-md-standards
 description: Use when creating, reviewing, or editing a CLAUDE.md (or nested CLAUDE.md) file. Defines what belongs in project memory versus what is derivable bloat — high-value build/test commands, conventions, gotchas, and safety rules — and how to keep it lean and skimmable.
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: skills-connector
 description: Use when authoring, structuring, or debugging Claude Code skills — writing a SKILL.md, crafting the frontmatter description that drives model routing, fixing a skill that isn't triggering when it should, deciding when to split one skill into several, referencing sibling skills, or organizing a coherent agentic skills library. The reference for building skills that reliably trigger and compose.
 ---
 

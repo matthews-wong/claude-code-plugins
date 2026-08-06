@@ -1,4 +1,5 @@
 ---
+name: parallel-lanes
 description: Use when a large task spans several independent areas and you want to fan it out for speed — split it into parallel "lanes" run by separate subagents or git worktrees, partition the work so lanes never write the same files (avoiding merge conflicts), then merge and synthesize the results into one coherent whole. Triggers on wanting to parallelize, fan out, run multiple agents in parallel, use a worktree per task, or split a big multi-part change across agents.
 ---
 

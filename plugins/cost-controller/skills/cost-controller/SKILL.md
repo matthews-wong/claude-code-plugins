@@ -1,4 +1,5 @@
 ---
+name: cost-controller
 description: Use when deciding which model to run for a task or how to cut Claude Code spend — a cost policy that routes bulk, mechanical work to cheaper/faster models (Haiku-class) and reserves frontier models (Opus-class) for judgment and review. Covers the cost/quality tradeoff, a decision matrix, how to switch models per task and per subagent, and orchestration patterns that minimize total cost to a correct result. Triggers on choosing between Haiku/Sonnet/Opus, reducing token cost, picking a cheaper model, or using /model to control spend.
 ---
 

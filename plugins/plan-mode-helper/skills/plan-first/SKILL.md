@@ -1,4 +1,5 @@
 ---
+name: plan-first
 description: Use before any non-trivial code change — a refactor, new feature, migration, or multi-file edit. Investigate the affected code first, produce a concise implementation plan (files to change, approach, risks, test strategy), get the user's confirmation, then execute. Prevents premature edits and surprise blast radius on risky work.
 ---
 

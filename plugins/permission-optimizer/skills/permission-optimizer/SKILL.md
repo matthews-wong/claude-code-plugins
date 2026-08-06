@@ -1,4 +1,5 @@
 ---
+name: permission-optimizer
 description: Use when a user is repeatedly prompted to approve the same safe, read-only tool calls and wants to reduce friction — phrasings like "stop asking me to approve git status / ls / rg" or "add these commands to the allowlist". Analyzes recently denied or repeatedly-prompted tool calls, isolates the read-only ones, and proposes exact-match permissions.allow rules for .claude/settings.local.json. Never allowlists write, execute, network, or destructive commands.
 ---
 
