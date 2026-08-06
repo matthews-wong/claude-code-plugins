@@ -1,14 +1,14 @@
 # 🤖 Agentic Claude Code Plugins
 
-> A marketplace of **48 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
+> A marketplace of **53 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
 
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugins-D97757?logo=anthropic&logoColor=white)
-![Plugins](https://img.shields.io/badge/plugins-48-6f42c1)
+![Plugins](https://img.shields.io/badge/plugins-53-6f42c1)
 ![Agentic Workflows](https://img.shields.io/badge/focus-agentic%20workflows-1f883d)
 ![Enterprise Ready](https://img.shields.io/badge/enterprise-ready-0A66C2)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 48 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
+I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 53 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
 
 📖 **New here?** Read [How to write a good plugin](./docs/writing-good-plugins.md) and [How plugins create lean, structured context](./docs/lean-structured-context.md) — the research behind this marketplace.
 
@@ -122,6 +122,17 @@ Beyond the agentic-adoption core, an enterprise layer for teams that need securi
 | Plugin | What it installs |
 | --- | --- |
 | [**context-budget**](./plugins/context-budget) | ⭐ `/context-audit` — audit `CLAUDE.md` and skills for bloat and enforce lean, structured context via progressive disclosure. |
+
+### 🛡️ Security & policy skills — *auto-invocable reviews*
+| Plugin | What it installs |
+| --- | --- |
+| [**threat-modeling**](./plugins/threat-modeling) | STRIDE threat modeling for a feature or design — attack surface + mitigations. |
+| [**dockerfile-hardening**](./plugins/dockerfile-hardening) | Review/generate hardened Dockerfiles (non-root, pinned base, minimal layers, no secrets, healthcheck). |
+| [**k8s-security-policy**](./plugins/k8s-security-policy) | Review K8s manifests against Pod Security Standards (securityContext, drop caps, no privileged, limits). |
+| [**db-migration-safety**](./plugins/db-migration-safety) | Review a schema migration for safety — expand-contract, avoid long locks, nullable-first + backfill. |
+| [**accessibility-audit**](./plugins/accessibility-audit) | Audit UI/markup for WCAG 2.2 AA basics — alt text, labels, contrast, keyboard nav, ARIA. |
+
+> **Every plugin ships an auto-invocable skill** — each `SKILL.md` has a `name` and a routing `description`, so Claude pulls the right one in automatically when your task matches (not only via slash command).
 
 ## 🔁 Workflow patterns
 
