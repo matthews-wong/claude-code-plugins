@@ -1,0 +1,21 @@
+{
+  "name": "k8s-security-policy",
+  "version": "1.0.0",
+  "description": "Review Kubernetes manifests against the Pod Security Standards (Restricted profile): runAsNonRoot, readOnlyRootFilesystem, drop ALL capabilities, no privilege escalation, seccomp, resource limits, and hostPath/hostNetwork hygiene.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "kubernetes",
+    "k8s",
+    "pod-security",
+    "securitycontext",
+    "pod-security-standards",
+    "devsecops"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
