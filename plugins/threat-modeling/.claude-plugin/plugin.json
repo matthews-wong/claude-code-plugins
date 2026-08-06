@@ -1,0 +1,21 @@
+{
+  "name": "threat-modeling",
+  "version": "1.0.0",
+  "description": "STRIDE threat modeling for a feature or design: enumerate assets, trust boundaries, and threats across Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, and Elevation of privilege, then propose mitigations.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "threat-modeling",
+    "stride",
+    "security-design-review",
+    "attack-surface",
+    "appsec"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

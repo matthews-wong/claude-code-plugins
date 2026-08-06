@@ -561,6 +561,18 @@
         "batch"
       ],
       "description": "Large-migration fan-out: generate a file list, loop scoped claude -p per file, sample before scaling."
+    },
+    {
+      "name": "threat-modeling",
+      "source": "threat-modeling",
+      "category": "security",
+      "keywords": [
+        "security",
+        "threat-modeling",
+        "stride",
+        "design-review"
+      ],
+      "description": "STRIDE threat modeling for a feature or design — auto-invokes on threat model, attack surface, security design review."
     }
   ]
 }
