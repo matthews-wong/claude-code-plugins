@@ -1,210 +1,194 @@
 #!/usr/bin/env python3
-"""Folder-scoped retrieval of prior learnings via a hand-rolled TF-IDF + cosine vector search.
+"""Folder-scoped hybrid retrieval of prior learnings (stdlib only, hook-safe).
 
-Reads the local knowledge store (.claude/knowledge/notes.jsonl), builds a TF-IDF
-vector for every note and for the query (current relative folder path plus any extra
-args), ranks notes by cosine similarity, and boosts notes whose stored folder is an
-ancestor or descendant of the current folder. Prints the top-K matches.
+Ranking blends several signals grounded in agent-memory literature:
 
-Pure Python 3, standard library only, so it can run from a hook with no pip installs.
-Always exits 0 and prints nothing when the store is missing or empty.
+* **Hybrid retrieval + Reciprocal Rank Fusion (RRF).** Candidates are scored by
+  BOTH a TF-IDF cosine ranking and a keyword-overlap ranking, then fused with
+  `rrf = 1/(K+rank_cosine) + 1/(K+rank_keyword)` (K=60). This is the standard
+  "run a vector search and a keyword search in parallel, fuse the two ranked
+  lists" recipe (RRF, Cormack et al.).
+* **Recency decay.** The fused score is multiplied by `exp(-age_days/HALF_LIFE)`
+  so stale lessons fade unless refreshed — a plain exponential forgetting curve.
+* **Importance & usefulness.** An optional `importance` field and a usefulness
+  boost from `access_count` (`1 + 0.1*log1p(access_count)`) let notes that
+  proved valuable rise (Mem0-style importance weighting; Reflexion-style reuse).
+* **Folder-lineage boost.** ×1.5 when a note's folder is an ancestor/descendant.
+* **Episodic vs semantic.** Distilled `semantic` principles get a small nudge
+  over one-off `episodic` records (A-Mem's semantic/episodic split).
+
+On retrieval it also INCREMENTS `access_count` (and sets `last_used`) for the
+notes actually returned — best-effort, guarded so a read-only or locked store
+never breaks the hook. Always exits 0.
 """
 
 import json
 import math
 import os
-import re
 import sys
-from collections import Counter
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _common as kc  # noqa: E402
 
 TOP_K = 3
-# Weight added to a note's cosine score when its folder shares a lineage with the
-# current folder (ancestor or descendant). Keeps folder-locality relevant without
-# letting it fully override textual relevance.
-FOLDER_BOOST = 0.25
-
-_TOKEN_RE = re.compile(r"[a-z0-9]+")
-
-
-def tokenize(text):
-    """Lowercase and split into alphanumeric tokens."""
-    return _TOKEN_RE.findall((text or "").lower())
+# RRF constant; 60 is the canonical default from the original RRF paper.
+RRF_K = 60
+# Recency half-life in days for the exp(-age/HALF_LIFE) decay factor.
+HALF_LIFE_DAYS = 90.0
+# Multiplicative folder-lineage boost (was an additive 0.25; now a factor so it
+# composes cleanly with the other multiplicative signals).
+FOLDER_BOOST_FACTOR = 1.5
+# Small nudge favoring distilled semantic principles over raw episodes.
+SEMANTIC_BOOST_FACTOR = 1.1
 
 
-def project_dir():
-    """Resolve the project root: CLAUDE_PROJECT_DIR if set, else cwd."""
-    return os.environ.get("CLAUDE_PROJECT_DIR") or os.getcwd()
+def rank_map(scored_pairs):
+    """Given [(index, score), ...] for hits (score>0), return {index: rank} (0-based)."""
+    ordered = sorted(scored_pairs, key=lambda p: p[1], reverse=True)
+    return {idx: rank for rank, (idx, _score) in enumerate(ordered)}
 
 
-def store_path(root):
-    return os.path.join(root, ".claude", "knowledge", "notes.jsonl")
+def keyword_overlap(query_terms, note_terms):
+    """Count of distinct query terms that also appear in the note."""
+    if not query_terms or not note_terms:
+        return 0
+    return len(query_terms & note_terms)
 
 
-def load_notes(path):
-    """Read notes.jsonl, skipping blank or malformed lines. Never raises."""
-    notes = []
+def bump_access(path, ids, when):
+    """Best-effort: increment access_count and set last_used for the given note ids.
+
+    Rewrites the store atomically, preserving every original line verbatim except
+    the matched notes. Swallows every error — retrieval must never fail the hook.
+    """
+    if not ids:
+        return
     try:
         with open(path, "r", encoding="utf-8") as handle:
-            for line in handle:
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    obj = json.loads(line)
-                except (ValueError, TypeError):
-                    continue
-                if isinstance(obj, dict) and obj.get("text"):
-                    notes.append(obj)
+            raw_lines = handle.readlines()
     except (OSError, IOError):
-        return []
-    return notes
+        return
 
+    remaining = set(ids)
+    out = []
+    for line in raw_lines:
+        stripped = line.strip()
+        if stripped and remaining:
+            try:
+                obj = json.loads(stripped)
+            except (ValueError, TypeError):
+                obj = None
+            if isinstance(obj, dict) and obj.get("id") in remaining:
+                obj["access_count"] = kc.get_int(obj, "access_count", 0) + 1
+                obj["last_used"] = when
+                remaining.discard(obj.get("id"))
+                out.append(json.dumps(obj, ensure_ascii=False) + "\n")
+                continue
+        out.append(line if line.endswith("\n") else line + "\n")
 
-def rel_folder(root, raw):
-    """Normalise a folder argument to a project-relative, POSIX-style path.
-
-    Accepts an absolute path (converted relative to the project root) or an
-    already-relative path. Returns "." for the project root itself.
-    """
-    if not raw:
-        return "."
-    raw = raw.strip()
-    if os.path.isabs(raw):
-        try:
-            raw = os.path.relpath(raw, root)
-        except ValueError:
-            # Different drive on Windows, etc. — fall back to the basename.
-            raw = os.path.basename(raw.rstrip("/\\"))
-    raw = raw.replace("\\", "/").strip("/")
-    return raw or "."
-
-
-def folder_related(current, other):
-    """True when `other` is an ancestor or descendant of `current` (or equal)."""
-    if not current or not other:
-        return False
-    if current == other:
-        return True
-    cur = "" if current == "." else current
-    oth = "" if other == "." else other
-    if cur == "" or oth == "":
-        # Project root is related to everything.
-        return True
-    return (cur + "/").startswith(oth + "/") or (oth + "/").startswith(cur + "/")
-
-
-def build_tfidf(docs_tokens):
-    """Return (tfidf_vectors, idf) for a list of token lists."""
-    n_docs = len(docs_tokens)
-    df = Counter()
-    for tokens in docs_tokens:
-        for term in set(tokens):
-            df[term] += 1
-    idf = {}
-    for term, count in df.items():
-        # Smoothed idf; +1 keeps weights positive even for ubiquitous terms.
-        idf[term] = math.log((1 + n_docs) / (1 + count)) + 1.0
-
-    vectors = []
-    for tokens in docs_tokens:
-        counts = Counter(tokens)
-        total = len(tokens) or 1
-        vec = {}
-        for term, count in counts.items():
-            vec[term] = (count / total) * idf.get(term, 0.0)
-        vectors.append(vec)
-    return vectors, idf
-
-
-def vectorize_query(tokens, idf):
-    counts = Counter(tokens)
-    total = len(tokens) or 1
-    vec = {}
-    for term, count in counts.items():
-        if term in idf:
-            vec[term] = (count / total) * idf[term]
-    return vec
-
-
-def cosine(a, b):
-    if not a or not b:
-        return 0.0
-    # Iterate the smaller vector for the dot product.
-    if len(a) > len(b):
-        a, b = b, a
-    dot = sum(weight * b.get(term, 0.0) for term, weight in a.items())
-    if dot == 0.0:
-        return 0.0
-    norm_a = math.sqrt(sum(w * w for w in a.values()))
-    norm_b = math.sqrt(sum(w * w for w in b.values()))
-    if norm_a == 0.0 or norm_b == 0.0:
-        return 0.0
-    return dot / (norm_a * norm_b)
-
-
-def note_search_text(note):
-    """Text used to represent a note: its body, plus tags and folder as context."""
-    parts = [note.get("text", "")]
-    tags = note.get("tags")
-    if isinstance(tags, list):
-        parts.extend(str(t) for t in tags)
-    elif tags:
-        parts.append(str(tags))
-    folder = note.get("folder")
-    if folder:
-        parts.append(str(folder).replace("/", " ").replace("\\", " "))
-    return " ".join(parts)
+    try:
+        tmp = path + ".tmp.{}".format(os.getpid())
+        with open(tmp, "w", encoding="utf-8") as handle:
+            handle.writelines(out)
+        os.replace(tmp, path)
+    except (OSError, IOError):
+        return
 
 
 def main():
-    root = project_dir()
-    path = store_path(root)
-    notes = load_notes(path)
+    root = kc.project_dir()
+    path = kc.store_path(root)
+    notes = kc.load_notes(path)
     if not notes:
         return 0
 
-    current_folder = rel_folder(root, sys.argv[1] if len(sys.argv) > 1 else "")
+    current_folder = kc.rel_folder(root, sys.argv[1] if len(sys.argv) > 1 else "")
     extra_query = " ".join(sys.argv[2:]).strip()
 
-    # The query is the current folder path (path segments as words) plus any extra
-    # terms the caller passed. This is the "search vector" we rank notes against.
+    # The query is the current folder path (segments as words) plus any extra terms.
     query_text = current_folder.replace("/", " ")
     if extra_query:
         query_text = query_text + " " + extra_query
 
-    docs_tokens = [tokenize(note_search_text(note)) for note in notes]
-    query_tokens = tokenize(query_text)
+    docs_tokens = [kc.tokenize(kc.note_search_text(note)) for note in notes]
+    query_tokens = kc.tokenize(query_text)
+    query_term_set = set(query_tokens)
 
-    vectors, idf = build_tfidf(docs_tokens)
-    query_vec = vectorize_query(query_tokens, idf)
+    vectors, idf = kc.build_tfidf(docs_tokens)
+    query_vec = kc.vectorize_query(query_tokens, idf)
+
+    # Two parallel ranked lists: cosine hits and keyword-overlap hits.
+    cosine_hits = []
+    keyword_hits = []
+    for i, (note, vec) in enumerate(zip(notes, vectors)):
+        cos = kc.cosine(query_vec, vec)
+        if cos > 0.0:
+            cosine_hits.append((i, cos))
+        overlap = keyword_overlap(query_term_set, set(docs_tokens[i]))
+        if overlap > 0:
+            keyword_hits.append((i, overlap))
+
+    cosine_ranks = rank_map(cosine_hits)
+    keyword_ranks = rank_map(keyword_hits)
+
+    # Union of candidates that appeared in at least one list.
+    candidate_indices = set(cosine_ranks) | set(keyword_ranks)
+    if not candidate_indices:
+        return 0
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc)
 
     scored = []
-    for note, vec in zip(notes, vectors):
-        score = cosine(query_vec, vec)
-        note_folder = rel_folder(root, note.get("folder", "."))
-        if folder_related(current_folder, note_folder):
-            score += FOLDER_BOOST
-        scored.append((score, note))
+    for i in candidate_indices:
+        note = notes[i]
 
-    scored.sort(key=lambda pair: pair[0], reverse=True)
-    top = [pair for pair in scored if pair[0] > 0.0][:TOP_K]
+        rrf = 0.0
+        if i in cosine_ranks:
+            rrf += 1.0 / (RRF_K + cosine_ranks[i])
+        if i in keyword_ranks:
+            rrf += 1.0 / (RRF_K + keyword_ranks[i])
+
+        # Recency decay: neutral (1.0) when the note has no parseable ts.
+        age = kc.note_age_days(note, now)
+        recency = 1.0 if age is None else math.exp(-age / HALF_LIFE_DAYS)
+
+        importance = kc.get_float(note, "importance", kc.DEFAULT_IMPORTANCE)
+        usefulness = 1.0 + 0.1 * math.log1p(kc.get_int(note, "access_count", 0))
+
+        score = rrf * recency * importance * usefulness
+
+        note_folder = kc.rel_folder(root, note.get("folder", "."))
+        if kc.folder_related(current_folder, note_folder):
+            score *= FOLDER_BOOST_FACTOR
+
+        if kc.note_kind(note) == "semantic":
+            score *= SEMANTIC_BOOST_FACTOR
+
+        scored.append((score, i, note))
+
+    scored.sort(key=lambda t: t[0], reverse=True)
+    top = [t for t in scored if t[0] > 0.0][:TOP_K]
     if not top:
         return 0
 
     lines = ["Relevant prior learnings:"]
-    for score, note in top:
+    returned_ids = []
+    for _score, _i, note in top:
+        if note.get("id"):
+            returned_ids.append(note["id"])
         text = " ".join(str(note.get("text", "")).split())
         if len(text) > 240:
             text = text[:237] + "..."
         folder = note.get("folder", ".")
-        tags = note.get("tags")
-        tag_str = ""
-        if isinstance(tags, list) and tags:
-            tag_str = " [" + ", ".join(str(t) for t in tags) + "]"
-        elif tags:
-            tag_str = " [" + str(tags) + "]"
-        lines.append("- ({}){} {}".format(folder, tag_str, text))
+        kind = kc.note_kind(note)
+        tags = kc.note_tags(note)
+        tag_str = " [" + ", ".join(tags) + "]" if tags else ""
+        lines.append("- ({}, {}){} {}".format(folder, kind, tag_str, text))
     print("\n".join(lines))
+
+    # Reinforce what we surfaced — best-effort, never fatal.
+    bump_access(path, returned_ids, kc.now_iso())
     return 0
 
 

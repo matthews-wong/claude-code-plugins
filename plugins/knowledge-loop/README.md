@@ -8,11 +8,15 @@ already knowing what earlier ones figured out.
 
 ## What it does
 
-- **Captures** durable, self-contained learnings tied to the folder they apply to.
+- **Captures** durable, self-contained learnings tied to the folder they apply to, each
+  typed as `episodic` (what happened) or `semantic` (a reusable principle), and
+  **deduplicated on ingest** so slight rewordings merge instead of piling up.
 - **Stores** them locally as JSON Lines at `.claude/knowledge/notes.jsonl`.
-- **Retrieves** the top matches by a hand-rolled TF-IDF + cosine **vector search**,
-  boosting notes whose folder shares a lineage with your current folder.
-- **Surfaces** them automatically at session start via a `SessionStart` hook.
+- **Retrieves** the top matches by a hand-rolled **hybrid search** — TF-IDF cosine *and*
+  keyword overlap, fused with **Reciprocal Rank Fusion** — then reweights by **recency
+  decay**, **importance/usefulness**, and folder lineage.
+- **Surfaces** them automatically at session start via a `SessionStart` hook, and
+  **consolidates/forgets** on demand via `/consolidate`.
 
 ## The loop
 
@@ -20,13 +24,15 @@ already knowing what earlier ones figured out.
 flowchart LR
     A[Agent works<br/>in a folder] --> B{Solved something<br/>non-obvious?}
     B -- yes --> C["/learn or skill<br/>distills a note"]
-    C --> D[store.py appends to<br/>.claude/knowledge/notes.jsonl]
+    C --> D["store.py appends<br/>(dedup-merges near-duplicates)"]
     B -- "Stop hook" --> N[capture-nudge.sh<br/>reminds to /learn]
     N -.-> C
     D --> E[SessionStart hook<br/>runs retrieve.sh]
-    E --> F["retrieve.py: TF-IDF + cosine<br/>+ folder-lineage boost"]
+    E --> F["retrieve.py: hybrid TF-IDF + keyword,<br/>RRF fusion, recency decay,<br/>importance/usefulness + folder boost"]
     F --> G[Top-K learnings<br/>surfaced to next agent]
     G --> A
+    D -. "/consolidate" .-> K[consolidate.py<br/>merge duplicates + forget stale]
+    K --> D
 ```
 
 ## Install
@@ -35,7 +41,8 @@ This is a standard Claude Code plugin. Install it from a marketplace that lists 
 it locally, then restart Claude Code so the hooks, commands, and skill register. Once
 installed you get:
 
-- **Commands:** `/learn` (record learnings), `/recall` (retrieve relevant learnings).
+- **Commands:** `/learn` (record learnings), `/recall` (retrieve relevant learnings),
+  `/consolidate` (merge duplicates and forget stale, low-value notes).
 - **Skill:** `knowledge-loop` (auto-invokes to record on solving something non-obvious and
   to recall when starting work in a folder).
 - **Hooks:** `SessionStart` surfaces relevant learnings; `Stop` nudges you to capture.
@@ -53,10 +60,20 @@ absent, the retrieval hook simply does nothing (it never blocks the session).
   remembering (prompted by the skill or `/learn`) and writes the note via `store.py`. The
   `Stop` hook only prints a one-line **nudge**; it never fabricates notes.
 
-This "vector search" is an honest **lexical** one: TF-IDF vectors ranked by cosine
-similarity, implemented by hand with the standard library. It matches on shared words, not
-meaning. To make it **semantic**, swap TF-IDF for sentence embeddings while keeping the
-same store and cosine ranking — see `skills/knowledge-loop/reference/how-it-works.md`.
+Retrieval is a **hybrid** search grounded in the agent-memory literature. It runs two
+lexical searches in parallel — TF-IDF cosine and keyword overlap — and fuses their ranked
+lists with **Reciprocal Rank Fusion** (`1/(60+rank_cos) + 1/(60+rank_kw)`). The fused score
+is then reweighted by an exponential **recency decay** (90-day half-life, so stale lessons
+fade), by **importance** and a **usefulness** boost from how often a note has been recalled
+(`access_count` increments each time a note is surfaced), by a **folder-lineage** boost, and
+by a small nudge for **semantic** (distilled-principle) notes over **episodic** ones. On
+ingest, near-duplicates **merge** rather than accumulate, and `/consolidate` periodically
+merges duplicates and forgets stale, low-value notes. These ideas come from **Reflexion**,
+**Mem0**, **A-Mem**, **reciprocal rank fusion**, and exponential recency-decay forgetting.
+
+It is still an honest **lexical** search — it matches on shared words, not meaning. To make
+it **semantic**, swap TF-IDF for sentence embeddings while keeping the same store, RRF
+fusion, and reweighting — see `skills/knowledge-loop/reference/how-it-works.md`.
 
 ## Privacy — gitignore the store
 
@@ -77,10 +94,13 @@ knowledge-loop/
 ├── hooks/hooks.json
 ├── commands/
 │   ├── learn.md
-│   └── recall.md
+│   ├── recall.md
+│   └── consolidate.md
 ├── scripts/
-│   ├── retrieve.py        # TF-IDF + cosine vector search (stdlib only)
-│   ├── store.py           # append a note (stdlib only)
+│   ├── _common.py         # shared TF-IDF / cosine / merge helpers (stdlib only)
+│   ├── retrieve.py        # hybrid RRF search + recency/importance reweighting
+│   ├── store.py           # append or dedup-merge a note (stdlib only)
+│   ├── consolidate.py     # merge duplicates + forget stale notes (stdlib only)
 │   ├── retrieve.sh        # SessionStart hook entry (non-blocking)
 │   └── capture-nudge.sh   # Stop hook nudge (non-blocking)
 ├── skills/knowledge-loop/

@@ -1,7 +1,7 @@
 {
   "name": "knowledge-loop",
-  "version": "1.0.0",
-  "description": "A self-improving, folder-scoped knowledge loop: capture concise learnings as agents work and auto-surface the most relevant prior learnings at session start via local TF-IDF vector search.",
+  "version": "1.1.0",
+  "description": "A self-improving, folder-scoped knowledge loop: capture concise learnings as agents work and auto-surface the most relevant prior learnings at session start via local hybrid (TF-IDF + keyword, RRF-fused) search with recency decay, importance/usefulness weighting, and periodic consolidation.",
   "author": {
     "name": "Matthews Wong",
     "url": "https://github.com/matthews-wong"
