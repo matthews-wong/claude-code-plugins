@@ -694,6 +694,19 @@
         "backend"
       ],
       "description": "Node backend patterns — layered structure, boundary validation, centralized async error handling, env config."
+    },
+    {
+      "name": "knowledge-loop",
+      "source": "knowledge-loop",
+      "category": "context",
+      "keywords": [
+        "memory",
+        "learning",
+        "vector-search",
+        "knowledge",
+        "hooks"
+      ],
+      "description": "Folder-scoped self-improving memory — a SessionStart hook auto-surfaces relevant past learnings via local vector search, and a skill records new ones so each agent starts smarter."
     }
   ]
 }

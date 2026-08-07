@@ -1,0 +1,25 @@
+{
+  "name": "knowledge-loop",
+  "version": "1.0.0",
+  "description": "A self-improving, folder-scoped knowledge loop: capture concise learnings as agents work and auto-surface the most relevant prior learnings at session start via local TF-IDF vector search.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "learning",
+    "vector-search",
+    "knowledge",
+    "context",
+    "hooks"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}
