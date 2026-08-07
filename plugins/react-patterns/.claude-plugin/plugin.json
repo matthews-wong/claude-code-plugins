@@ -1,0 +1,23 @@
+{
+  "name": "react-patterns",
+  "version": "1.0.0",
+  "description": "Modern React component and hook patterns: rules of hooks, state colocation, stable keys, controlled inputs, effect cleanup, measured memoization, and accessibility.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "hooks",
+    "jsx",
+    "components",
+    "usestate",
+    "useeffect",
+    "accessibility",
+    "frontend"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

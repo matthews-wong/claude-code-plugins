@@ -645,6 +645,18 @@
         "strict"
       ],
       "description": "TypeScript type design — avoid any, discriminated unions, constrained generics; triggers on type errors and .ts files."
+    },
+    {
+      "name": "react-patterns",
+      "source": "react-patterns",
+      "category": "frontend",
+      "keywords": [
+        "react",
+        "hooks",
+        "jsx",
+        "components"
+      ],
+      "description": "React component and hooks best practices — triggers on JSX/.tsx, useState/useEffect, component work."
     }
   ]
 }
