@@ -34,11 +34,15 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/store.py" --text "the lesson" --folder "s
 
 Keep notes short (1-3 sentences), one insight each, no secrets. Skip the trivial. Add
 `--kind semantic` when the note is a reusable principle rather than a one-off episode
-(default is `episodic`). Near-duplicates in the same folder are merged automatically on
-store, so re-recording a known lesson strengthens it instead of cluttering the store.
+(default is `episodic`). Each note carries a `confidence` in `0.0`–`1.0` (default `0.5`);
+pass `--confidence 0.8` when you already trust the lesson. Near-duplicates in the same folder
+are merged automatically on store — re-recording a known lesson strengthens it (and **raises
+its confidence** toward `1.0`) instead of cluttering the store.
 
 The `/recall` and `/learn` commands wrap these two steps for on-demand use. `/consolidate`
-runs an occasional cleanup — merging duplicates and forgetting stale, low-value notes.
+runs an occasional cleanup — merging duplicates and forgetting stale, low-value or unproven
+low-confidence notes. `/evolve` clusters recurring learnings into **draft reusable skills**
+when a topic keeps coming up, for you to review and promote (the instincts → skill loop).
 
 ## Honesty about what is and isn't automatic
 

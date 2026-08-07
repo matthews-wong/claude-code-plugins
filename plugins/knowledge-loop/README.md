@@ -9,14 +9,18 @@ already knowing what earlier ones figured out.
 ## What it does
 
 - **Captures** durable, self-contained learnings tied to the folder they apply to, each
-  typed as `episodic` (what happened) or `semantic` (a reusable principle), and
-  **deduplicated on ingest** so slight rewordings merge instead of piling up.
+  typed as `episodic` (what happened) or `semantic` (a reusable principle), carrying a
+  **confidence score** that rises as a lesson is corroborated, and **deduplicated on ingest**
+  so slight rewordings merge instead of piling up.
 - **Stores** them locally as JSON Lines at `.claude/knowledge/notes.jsonl`.
 - **Retrieves** the top matches by a hand-rolled **hybrid search** — TF-IDF cosine *and*
   keyword overlap, fused with **Reciprocal Rank Fusion** — then reweights by **recency
-  decay**, **importance/usefulness**, and folder lineage.
+  decay**, **importance/usefulness**, **confidence**, and folder lineage.
 - **Surfaces** them automatically at session start via a `SessionStart` hook, and
-  **consolidates/forgets** on demand via `/consolidate`.
+  **consolidates/forgets** on demand via `/consolidate` (which also drops unproven, unused,
+  stale low-confidence notes).
+- **Evolves** recurring learnings into **draft reusable skills** via `/evolve` — the
+  auto-learning → skill loop: cluster related lessons, scaffold a `SKILL.md`, review, promote.
 
 ## The loop
 
@@ -33,6 +37,8 @@ flowchart LR
     G --> A
     D -. "/consolidate" .-> K[consolidate.py<br/>merge duplicates + forget stale]
     K --> D
+    D -. "/evolve" .-> V[evolve.py<br/>cluster recurring lessons<br/>→ draft SKILL.md]
+    V -.-> W[human/model reviews<br/>& promotes to a real skill]
 ```
 
 ## Install
@@ -42,7 +48,8 @@ it locally, then restart Claude Code so the hooks, commands, and skill register.
 installed you get:
 
 - **Commands:** `/learn` (record learnings), `/recall` (retrieve relevant learnings),
-  `/consolidate` (merge duplicates and forget stale, low-value notes).
+  `/consolidate` (merge duplicates and forget stale, low-value notes), `/evolve` (cluster
+  recurring learnings into draft reusable skills).
 - **Skill:** `knowledge-loop` (auto-invokes to record on solving something non-obvious and
   to recall when starting work in a folder).
 - **Hooks:** `SessionStart` surfaces relevant learnings; `Stop` nudges you to capture.
@@ -65,11 +72,15 @@ lexical searches in parallel — TF-IDF cosine and keyword overlap — and fuses
 lists with **Reciprocal Rank Fusion** (`1/(60+rank_cos) + 1/(60+rank_kw)`). The fused score
 is then reweighted by an exponential **recency decay** (90-day half-life, so stale lessons
 fade), by **importance** and a **usefulness** boost from how often a note has been recalled
-(`access_count` increments each time a note is surfaced), by a **folder-lineage** boost, and
-by a small nudge for **semantic** (distilled-principle) notes over **episodic** ones. On
-ingest, near-duplicates **merge** rather than accumulate, and `/consolidate` periodically
-merges duplicates and forgets stale, low-value notes. These ideas come from **Reflexion**,
-**Mem0**, **A-Mem**, **reciprocal rank fusion**, and exponential recency-decay forgetting.
+(`access_count` increments each time a note is surfaced), by a **confidence** multiplier
+(a corroborated lesson outranks an unproven one), by a **folder-lineage** boost, and by a
+small nudge for **semantic** (distilled-principle) notes over **episodic** ones. On ingest,
+near-duplicates **merge** rather than accumulate (raising the survivor's confidence), and
+`/consolidate` periodically merges duplicates and forgets stale, low-value notes. When a set
+of lessons keeps recurring, `/evolve` clusters them into a **draft reusable skill** for you
+to review and promote. These ideas come from **Reflexion**, **Mem0**, **A-Mem**, **reciprocal
+rank fusion**, exponential recency-decay forgetting, and confidence-scored "instinct"
+memories (see *Prior art* below).
 
 It is still an honest **lexical** search — it matches on shared words, not meaning. To make
 it **semantic**, swap TF-IDF for sentence embeddings while keeping the same store, RRF
@@ -95,12 +106,14 @@ knowledge-loop/
 ├── commands/
 │   ├── learn.md
 │   ├── recall.md
-│   └── consolidate.md
+│   ├── consolidate.md
+│   └── evolve.md
 ├── scripts/
-│   ├── _common.py         # shared TF-IDF / cosine / merge helpers (stdlib only)
-│   ├── retrieve.py        # hybrid RRF search + recency/importance reweighting
-│   ├── store.py           # append or dedup-merge a note (stdlib only)
-│   ├── consolidate.py     # merge duplicates + forget stale notes (stdlib only)
+│   ├── _common.py         # shared TF-IDF / cosine / merge / confidence helpers (stdlib only)
+│   ├── retrieve.py        # hybrid RRF search + recency/importance/confidence reweighting
+│   ├── store.py           # append or dedup-merge a confidence-scored note (stdlib only)
+│   ├── consolidate.py     # merge duplicates + forget stale/low-confidence notes (stdlib only)
+│   ├── evolve.py          # cluster recurring notes → draft reusable skills (stdlib only)
 │   ├── retrieve.sh        # SessionStart hook entry (non-blocking)
 │   └── capture-nudge.sh   # Stop hook nudge (non-blocking)
 ├── skills/knowledge-loop/
@@ -110,6 +123,15 @@ knowledge-loop/
 │       └── store-format.md
 └── README.md
 ```
+
+## Prior art & inspiration
+
+The confidence-scored "instincts" and the evolve-recurring-learnings-into-skills loop were
+popularized by the open-source **ECC project** ([github.com/affaan-m/ECC](https://github.com/affaan-m/ECC),
+MIT). This plugin is an **independent implementation of those general ideas** — no ECC code
+is used or copied — built from scratch on the Python standard library, alongside the broader
+agent-memory literature it already draws on (**Reflexion**, **Mem0**, **A-Mem**, **reciprocal
+rank fusion**, and exponential recency-decay forgetting).
 
 ## License
 

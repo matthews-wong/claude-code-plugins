@@ -10,3 +10,9 @@ node_modules/
 
 # Local test installs
 .claude/
+
+# Python caches
+__pycache__/
+*.pyc
+# local knowledge store
+.claude/knowledge/

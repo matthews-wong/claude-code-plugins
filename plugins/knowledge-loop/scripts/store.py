@@ -16,9 +16,13 @@ If the closest match is >= DEDUP_THRESHOLD, the note is MERGED into that match
 
 Pure Python 3, standard library only.
 
+Every note also carries a `confidence` in [0.0, 1.0] (default 0.5) — how trustworthy
+the lesson is. When dedup-merge fires (the same lesson recorded again), the surviving
+note's confidence is RAISED toward 1.0: a repeated lesson is more trustworthy.
+
 Usage:
     store.py --text "the lesson" [--folder "relative/path"] [--tags "a,b,c"]
-             [--kind episodic|semantic] [--importance 1.0]
+             [--kind episodic|semantic] [--importance 1.0] [--confidence 0.5]
 """
 
 import argparse
@@ -81,6 +85,13 @@ def main(argv=None):
         default=kc.DEFAULT_IMPORTANCE,
         help="Relative importance weight (default 1.0).",
     )
+    parser.add_argument(
+        "--confidence",
+        type=float,
+        default=kc.DEFAULT_CONFIDENCE,
+        help="How trustworthy the lesson is, 0.0-1.0 (default 0.5). "
+             "Rises toward 1.0 when the same lesson is corroborated by a merge.",
+    )
     args = parser.parse_args(argv)
 
     text = args.text.strip()
@@ -93,7 +104,10 @@ def main(argv=None):
     tags = parse_tags(args.tags)
     store_file = kc.store_path(root)
 
-    incoming = kc.new_note(text, folder, tags, kind=args.kind, importance=args.importance)
+    incoming = kc.new_note(
+        text, folder, tags,
+        kind=args.kind, importance=args.importance, confidence=args.confidence,
+    )
 
     existing = kc.load_notes(store_file)
     same_folder = [
@@ -110,8 +124,9 @@ def main(argv=None):
             kc.write_notes_atomic(store_file, existing)
             print(
                 "Merged into existing learning {} (folder: {}, similarity {:.2f}); "
-                "importance now {}".format(
-                    merged.get("id"), folder, sim, merged.get("importance")
+                "importance now {}, confidence now {}".format(
+                    merged.get("id"), folder, sim,
+                    merged.get("importance"), merged.get("confidence"),
                 )
             )
         else:

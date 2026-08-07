@@ -22,6 +22,9 @@ For each note, choose:
 - `--folder`: the project-relative folder the lesson is about (e.g. `src/auth`). Default
   to the folder you were working in. Use `.` for repo-wide lessons.
 - `--tags`: a few comma-separated keywords (e.g. `bug,async,retry`) to aid retrieval.
+- `--confidence` (optional): how trustworthy the lesson is, `0.0`–`1.0` (default `0.5`).
+  Pass a higher value (e.g. `0.8`) for a well-verified lesson; leave the default for a hunch.
+  Confidence rises automatically as a lesson is corroborated (re-recorded) or reused.
 
 Then append each note by running (once per note):
 

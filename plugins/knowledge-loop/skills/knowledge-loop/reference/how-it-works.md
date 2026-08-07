@@ -49,9 +49,25 @@ little more readily than raw episodes — the intuition behind A-Mem's memory ty
 Before appending, `store.py` compares the new note (by TF-IDF cosine) to existing notes
 **in the same folder**. If the closest match is `≥ 0.85`, it **merges** into that note
 instead of adding a near-duplicate: it keeps the longer text, unions the tags, bumps
-`importance` (a lesson learned twice matters more), lets a `semantic` kind win, and
-refreshes `ts`. This keeps the store from filling with slight rewordings of the same
-lesson.
+`importance` (a lesson learned twice matters more), **raises `confidence` toward 1.0**
+(corroboration — see below), lets a `semantic` kind win, and refreshes `ts`. This keeps the
+store from filling with slight rewordings of the same lesson.
+
+### Confidence-scored learnings
+
+Every note carries a `confidence` in `[0.0, 1.0]` (default `0.5`) — how trustworthy the
+lesson is. A single observation is only moderately trusted; two signals raise confidence
+toward `1.0` with diminishing returns (`conf → conf + (1 - conf)·gain`):
+
+- **Corroboration.** When the same lesson is recorded again and dedup-merges (on ingest or
+  during `/consolidate`), the survivor's confidence rises with `gain = 0.3` (e.g.
+  `0.5 → 0.65 → 0.755 …`). A lesson learned twice is more trustworthy.
+- **Used-and-survived.** When retrieval surfaces a note, it gets a gentle bump
+  (`gain = 0.05`). Notes that keep proving relevant slowly earn trust.
+
+Set an initial value with `store.py --confidence 0.8` when you already trust a lesson.
+Confidence is a standard **confidence-scored memory / "instinct"** idea, and it feeds three
+places: retrieval ranking, forgetting, and `/evolve` (below).
 
 ## Retrieve → surface
 
@@ -71,14 +87,18 @@ Retrieval is **automatic**. The `SessionStart` hook runs `retrieve.sh`, which ca
 4. **Importance & usefulness.** Multiplied by the note's `importance` (default `1.0`) and by
    a usefulness boost `1 + 0.1 · log1p(access_count)` — notes that repeatedly proved worth
    surfacing rise over time (Reflexion-style reuse; Mem0-style importance).
-5. **Folder-lineage boost.** ×`1.5` when a note's `folder` is an ancestor/descendant/equal
+5. **Confidence.** Multiplied by `0.7 + 0.3 · confidence`, a gentle factor in `[0.7, 1.0]`.
+   A corroborated, trusted lesson wins a tie over an equally-relevant unproven one, while a
+   low-confidence note is dampened but never zeroed out.
+6. **Folder-lineage boost.** ×`1.5` when a note's `folder` is an ancestor/descendant/equal
    of the current folder, so locally-relevant lessons rise even when wording differs.
-6. **Episodic vs semantic.** A small ×`1.1` nudge for `semantic` notes.
+7. **Episodic vs semantic.** A small ×`1.1` nudge for `semantic` notes.
 
 It prints a compact top-K (default 3) list and then **reinforces what it surfaced**:
-best-effort, it increments `access_count` and sets `last_used` on the returned notes. That
-write is fully guarded — a read-only or locked store never breaks the hook, which always
-exits 0. If the store is missing or has no relevant match, it prints nothing and exits 0.
+best-effort, it increments `access_count`, sets `last_used`, and gives `confidence` a small
+used-and-survived bump on the returned notes. That write is fully guarded — a read-only or
+locked store never breaks the hook, which always exits 0. If the store is missing or has no
+relevant match, it prints nothing and exits 0.
 
 ## Consolidation / forgetting (`/consolidate`)
 
@@ -87,10 +107,38 @@ maintenance pass over the **whole** store:
 
 - **Merge near-duplicates** — any pair with TF-IDF cosine `≥ 0.85` is merged (same rule as
   ingest dedup: longer text kept, tags unioned, importance bumped, semantic wins).
-- **Prune stale, low-value notes** — a note is forgotten only when it is older than
-  `--max-age-days` (default `365`) **and** has `importance < 1.0` **and** was never used
-  (`access_count == 0`). Default-importance notes are therefore never pruned; only
-  explicitly low-importance, never-reused, stale notes are. `--dry-run` previews the counts.
+- **Prune stale, low-value notes** — a note is forgotten when it matches **either** rule:
+  (1) older than `--max-age-days` (default `365`) **and** `importance < 1.0` **and** never
+  used (`access_count == 0`); or (2) `confidence < 0.3` **and** never used **and** older than
+  `--low-conf-age-days` (default `30`). Rule 1 never prunes default-importance notes; rule 2
+  never prunes default-confidence (`0.5`) notes — only unproven, unused, stale ones. So a
+  speculative lesson that nothing ever corroborated or reused is quietly forgotten within a
+  month, while a trusted or reused lesson persists. `--dry-run` previews the counts.
+
+## Evolve: recurring learnings → a reusable skill (`/evolve`)
+
+The last turn of the loop is **auto-learning → skill**. When several notes keep circling the
+same topic, they have graduated from one-off *instincts* into a reusable pattern worth
+promoting to a real skill. `evolve.py` (wired to `/evolve`) finds those clusters and
+**drafts** a skill for each:
+
+- **Cluster.** Build TF-IDF vectors over every note and take pairwise cosine. Two notes join
+  the same cluster when cosine `≥ --threshold` (default `0.35`) **and** they share context
+  (a related folder **or** at least one common tag). Clustering is single-link / greedy
+  (union-find), so a chain of related notes gathers into one connected component.
+- **Gate.** A cluster is drafted only when it has `≥ --min-size` notes (default `3`) **and**
+  a decent **average `confidence`** (`≥ --min-confidence`, default `0.4`) — an unproven or
+  trivial pattern is not crystallized into a skill.
+- **Draft.** For each qualifying cluster it writes `.claude/knowledge/evolved/<slug>/SKILL.md`
+  — a well-formed skill with frontmatter (`name:` plus a routing `description:` synthesized
+  from the cluster's folder and most common tags) and a body listing the clustered lessons,
+  most-corroborated first, as guidance.
+
+`evolve.py` only **drafts** — it never installs a skill. The `/evolve` command then has the
+model review each draft, sharpen the `description:` into a strong trigger, and promote the
+good ones into a real plugin/project `skills/` location (dropping the weak). That is how the
+loop compounds: today's repeated instincts become tomorrow's automatic behavior. `--dry-run`
+reports the clusters without writing anything.
 
 ## The "vector search", honestly labeled
 
@@ -122,7 +170,8 @@ surface anywhere.
 
 ## Backward compatibility
 
-Older notes may predate the `kind`, `importance`, `access_count`, and `last_used` fields.
-Every reader defaults them (`kind = episodic`, `importance = 1.0`, `access_count = 0`,
-recency neutral when `ts` is missing), so an existing `notes.jsonl` keeps working unchanged
-and simply gains the new behavior as notes are re-touched.
+Older notes may predate the `kind`, `importance`, `confidence`, `access_count`, and
+`last_used` fields. Every reader defaults them (`kind = episodic`, `importance = 1.0`,
+`confidence = 0.5`, `access_count = 0`, recency neutral when `ts` is missing), so an existing
+`notes.jsonl` keeps working unchanged and simply gains the new behavior as notes are
+re-touched.

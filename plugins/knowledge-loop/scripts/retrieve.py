@@ -13,13 +13,17 @@ Ranking blends several signals grounded in agent-memory literature:
 * **Importance & usefulness.** An optional `importance` field and a usefulness
   boost from `access_count` (`1 + 0.1*log1p(access_count)`) let notes that
   proved valuable rise (Mem0-style importance weighting; Reflexion-style reuse).
+* **Confidence.** A gentle multiplier `(0.7 + 0.3*confidence)` so a trustworthy,
+  corroborated lesson outranks an equally-relevant unproven one, without letting
+  a low-confidence note vanish entirely (confidence-scored memories).
 * **Folder-lineage boost.** ×1.5 when a note's folder is an ancestor/descendant.
 * **Episodic vs semantic.** Distilled `semantic` principles get a small nudge
   over one-off `episodic` records (A-Mem's semantic/episodic split).
 
 On retrieval it also INCREMENTS `access_count` (and sets `last_used`) for the
-notes actually returned — best-effort, guarded so a read-only or locked store
-never breaks the hook. Always exits 0.
+notes actually returned, and gives each a small `confidence` bump (a used-and-
+survived signal) — best-effort, guarded so a read-only or locked store never
+breaks the hook. Always exits 0.
 """
 
 import json
@@ -56,10 +60,12 @@ def keyword_overlap(query_terms, note_terms):
 
 
 def bump_access(path, ids, when):
-    """Best-effort: increment access_count and set last_used for the given note ids.
+    """Best-effort: reinforce the given note ids after they were surfaced.
 
-    Rewrites the store atomically, preserving every original line verbatim except
-    the matched notes. Swallows every error — retrieval must never fail the hook.
+    Increments access_count, sets last_used, and gives confidence a small bump
+    toward 1.0 (used-and-survived signal). Rewrites the store atomically,
+    preserving every original line verbatim except the matched notes. Swallows
+    every error — retrieval must never fail the hook.
     """
     if not ids:
         return
@@ -81,6 +87,9 @@ def bump_access(path, ids, when):
             if isinstance(obj, dict) and obj.get("id") in remaining:
                 obj["access_count"] = kc.get_int(obj, "access_count", 0) + 1
                 obj["last_used"] = when
+                obj["confidence"] = kc.raise_confidence(
+                    kc.note_confidence(obj), kc.CONFIDENCE_ACCESS_GAIN
+                )
                 remaining.discard(obj.get("id"))
                 out.append(json.dumps(obj, ensure_ascii=False) + "\n")
                 continue
@@ -155,8 +164,11 @@ def main():
 
         importance = kc.get_float(note, "importance", kc.DEFAULT_IMPORTANCE)
         usefulness = 1.0 + 0.1 * math.log1p(kc.get_int(note, "access_count", 0))
+        # Gentle confidence multiplier in [0.7, 1.0]: a corroborated lesson wins a
+        # tie over an unproven one, but a low-confidence note is never zeroed out.
+        confidence = 0.7 + 0.3 * kc.note_confidence(note)
 
-        score = rrf * recency * importance * usefulness
+        score = rrf * recency * importance * usefulness * confidence
 
         note_folder = kc.rel_folder(root, note.get("folder", "."))
         if kc.folder_related(current_folder, note_folder):

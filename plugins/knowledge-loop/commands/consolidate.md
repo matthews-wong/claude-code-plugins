@@ -17,14 +17,19 @@ What it does:
 - **Merges near-duplicates** across the whole store (TF-IDF cosine ≥ 0.85): the
   longer text is kept, tags are unioned, importance is bumped, and a `semantic`
   kind wins over `episodic`.
-- **Prunes stale, low-value notes**: a note is forgotten only when it is older than
-  `--max-age-days` (default 365) AND has `importance < 1.0` AND was never used
-  (`access_count == 0`). Default-importance notes are never pruned.
+- **Prunes stale, low-value notes** — a note is forgotten when it matches **either**:
+  - older than `--max-age-days` (default 365) AND `importance < 1.0` AND never used
+    (`access_count == 0`); or
+  - `confidence < 0.3` AND never used AND older than `--low-conf-age-days` (default 30).
+
+  Default-importance notes are never pruned by the first rule; default-confidence (0.5)
+  notes are never pruned by the second — only unproven, unused, stale ones.
 
 Useful flags:
 
 - `--dry-run` — report what would be merged/pruned without changing the store.
 - `--max-age-days N` — change the staleness cutoff (default 365).
+- `--low-conf-age-days N` — change the low-confidence staleness window (default 30).
 
 To preview first, run:
 

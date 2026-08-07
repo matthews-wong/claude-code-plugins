@@ -5,8 +5,8 @@ Pure Python 3, standard library only — these scripts run straight from hooks w
 no pip installs. Everything here is deliberately dependency-free.
 
 Backward compatibility: older notes in .claude/knowledge/notes.jsonl may predate
-the newer fields (`kind`, `importance`, `access_count`, `last_used`). All readers
-here default those fields, so an old store keeps working unchanged.
+the newer fields (`kind`, `importance`, `access_count`, `last_used`, `confidence`).
+All readers here default those fields, so an old store keeps working unchanged.
 """
 
 import json
@@ -28,6 +28,18 @@ IMPORTANCE_BUMP = 0.5
 DEFAULT_IMPORTANCE = 1.0
 DEFAULT_KIND = "episodic"
 VALID_KINDS = ("episodic", "semantic")
+
+# Confidence: how trustworthy a learning is, in [0.0, 1.0]. A fresh, single
+# observation is only moderately trusted (0.5); corroboration (a repeated lesson
+# that dedup-merges on ingest, or a note that is surfaced and survives) raises it
+# toward 1.0. This is the standard "confidence-scored memory / instinct" idea.
+DEFAULT_CONFIDENCE = 0.5
+# Fraction of the remaining gap to 1.0 closed when a lesson is corroborated by a
+# merge: conf -> conf + (1 - conf) * gain. Diminishing returns near 1.0.
+CONFIDENCE_MERGE_GAIN = 0.3
+# Smaller gain applied when retrieval surfaces a note and it survives (used-and-
+# survived signal) — a gentle nudge, not a corroboration.
+CONFIDENCE_ACCESS_GAIN = 0.05
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
 
@@ -188,6 +200,30 @@ def note_kind(note):
     return kind if kind in VALID_KINDS else DEFAULT_KIND
 
 
+def clamp01(value):
+    """Clamp a float into [0.0, 1.0]."""
+    if value < 0.0:
+        return 0.0
+    if value > 1.0:
+        return 1.0
+    return value
+
+
+def note_confidence(note):
+    """Confidence in [0.0, 1.0]; old notes without the field default to 0.5."""
+    return clamp01(get_float(note, "confidence", DEFAULT_CONFIDENCE))
+
+
+def raise_confidence(conf, gain=CONFIDENCE_MERGE_GAIN):
+    """Move a confidence value toward 1.0 by a fraction of the remaining gap.
+
+    conf -> conf + (1 - conf) * gain, clamped to [0, 1]. Repeated corroboration
+    therefore has diminishing returns and can never exceed full confidence.
+    """
+    conf = clamp01(conf)
+    return round(clamp01(conf + (1.0 - conf) * gain), 4)
+
+
 def note_tags(note):
     tags = note.get("tags")
     if isinstance(tags, list):
@@ -223,6 +259,7 @@ def merge_notes(a, b):
     - keep the LONGER text (more context wins)
     - union the tags
     - bump importance (a lesson seen twice matters more)
+    - RAISE confidence toward 1.0 (corroboration — the lesson was seen again)
     - kind: `semantic` wins over `episodic` (a distilled principle outranks an episode)
     - sum access counts; keep the most recent `last_used`
     - refresh `ts` to now (this is a fresh merge event)
@@ -243,6 +280,11 @@ def merge_notes(a, b):
               get_float(b, "importance", DEFAULT_IMPORTANCE)) + IMPORTANCE_BUMP
     merged["importance"] = round(imp, 3)
 
+    # Corroboration: a lesson seen twice is more trustworthy. Start from the more
+    # confident of the two, then raise it toward 1.0.
+    base_conf = max(note_confidence(a), note_confidence(b))
+    merged["confidence"] = raise_confidence(base_conf)
+
     kinds = {note_kind(a), note_kind(b)}
     merged["kind"] = "semantic" if "semantic" in kinds else "episodic"
 
@@ -256,7 +298,8 @@ def merge_notes(a, b):
     return merged
 
 
-def new_note(text, folder, tags, kind=DEFAULT_KIND, importance=DEFAULT_IMPORTANCE):
+def new_note(text, folder, tags, kind=DEFAULT_KIND, importance=DEFAULT_IMPORTANCE,
+             confidence=DEFAULT_CONFIDENCE):
     """Build a fresh note dict with all current fields populated."""
     return {
         "id": uuid.uuid4().hex[:12],
@@ -265,6 +308,7 @@ def new_note(text, folder, tags, kind=DEFAULT_KIND, importance=DEFAULT_IMPORTANC
         "tags": tags,
         "kind": kind if kind in VALID_KINDS else DEFAULT_KIND,
         "importance": round(float(importance), 3),
+        "confidence": round(clamp01(float(confidence)), 4),
         "access_count": 0,
         "ts": now_iso(),
     }
