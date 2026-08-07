@@ -1,0 +1,25 @@
+{
+  "name": "rest-api-design",
+  "version": "1.0.0",
+  "description": "Opinionated REST API design guidance: resource naming, correct HTTP status codes, consistent error envelopes, pagination, idempotency, and URL versioning.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "rest",
+    "api",
+    "http",
+    "endpoint",
+    "route",
+    "status-code",
+    "pagination",
+    "versioning",
+    "idempotency",
+    "api-design"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

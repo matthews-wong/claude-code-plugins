@@ -670,6 +670,18 @@
         "dark-mode"
       ],
       "description": "Responsive CSS and layout — mobile-first, flexbox vs grid, design tokens, prefers-color-scheme dark mode."
+    },
+    {
+      "name": "rest-api-design",
+      "source": "rest-api-design",
+      "category": "backend",
+      "keywords": [
+        "api",
+        "rest",
+        "http",
+        "endpoints"
+      ],
+      "description": "REST API design — resource naming, correct status codes, pagination, versioning, idempotency, edge validation."
     }
   ]
 }
