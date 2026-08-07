@@ -4,6 +4,11 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.1] — 2026-08
+
+### Changed
+- **`knowledge-loop` → v1.1** (research-backed memory upgrade): hybrid TF-IDF-cosine + keyword retrieval fused with **reciprocal rank fusion**, **recency decay** (90-day half-life), **importance + access-count** usefulness weighting, **episodic vs. semantic** note types, **dedup-on-ingest** (merge at cosine ≥ 0.85), and a **`/consolidate`** merge-and-forget pass. Grounded in Reflexion, Mem0, A-Mem, and RRF/recency-decay literature. Still stdlib-only and backward-compatible.
+
 ## [2.5.0] — 2026-08
 
 ### Added
