@@ -1,0 +1,22 @@
+{
+  "name": "javascript-standards",
+  "version": "1.0.0",
+  "description": "Modern JavaScript and TypeScript authoring standards: ESM, const/let, strict equality, async/await, immutability, and robust error handling.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "esm",
+    "modern-js",
+    "async-await",
+    "code-quality",
+    "best-practices"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

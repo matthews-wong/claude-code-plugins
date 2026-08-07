@@ -621,6 +621,18 @@
         "frontend"
       ],
       "description": "Audit UI/markup for WCAG 2.2 AA basics — alt text, labels, contrast, keyboard nav, ARIA."
+    },
+    {
+      "name": "javascript-standards",
+      "source": "javascript-standards",
+      "category": "language",
+      "keywords": [
+        "javascript",
+        "typescript",
+        "esm",
+        "best-practices"
+      ],
+      "description": "Modern JavaScript/TypeScript conventions — auto-invokes when writing or reviewing .js/.ts/.jsx/.tsx code."
     }
   ]
 }
