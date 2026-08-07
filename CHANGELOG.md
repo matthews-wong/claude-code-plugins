@@ -4,6 +4,15 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] — 2026-08
+
+### Added
+- **`instincts`** — an auto-learning memory layer (original, clean-room implementation). Promotes recurring learnings (from `knowledge-loop`) into durable **rules** with a support/confidence model (`confidence = 1 - 0.5^support`), auto-surfaces the top rules each session via a `SessionStart` hook, and supports `export`/`import` to carry instincts across projects. Commands: `/instinct-add`, `/instinct-status`, `/instinct-learn` (promote), `/instinct-export`, `/instinct-import`.
+- **`CREDITS.md`** — attributes ECC (Everything Claude Code, MIT © Affaan Mustafa) and agent-memory research (Reflexion, Mem0, A-Mem) as inspiration for the memory/auto-learning design. Original implementations; no code copied.
+
+### Changed
+- Marketplace now ships **61 plugins**; bumped to `2.6.0`. Memory + auto-learning is now a first-class core (`knowledge-loop` + `instincts`).
+
 ## [2.5.1] — 2026-08
 
 ### Changed
