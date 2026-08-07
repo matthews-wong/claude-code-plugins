@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "matthews-agentic-plugins",
-  "description": "61 Claude Code plugins for agentic workflows, enterprise engineering, and language/stack skills — with a memory + auto-learning core (knowledge-loop + instincts). Every plugin ships an auto-invocable skill.",
-  "version": "2.6.1",
+  "description": "62 Claude Code plugins for agentic workflows, enterprise engineering, and language/stack skills — with an all-in-one memory + auto-learning core (the `memory` plugin). Every plugin ships an auto-invocable skill; zero runtime dependencies.",
+  "version": "2.7.0",
   "owner": {
     "name": "Matthews Wong",
     "url": "https://github.com/matthews-wong"
@@ -721,6 +721,20 @@
         "hooks"
       ],
       "description": "Auto-learning: promote recurring learnings into durable rules ('instincts'), auto-surfaced every session; with status/export/import to carry them across projects. Pairs with knowledge-loop."
+    },
+    {
+      "name": "memory",
+      "source": "memory",
+      "category": "context",
+      "keywords": [
+        "memory",
+        "auto-learning",
+        "vector-search",
+        "instincts",
+        "self-improving",
+        "hooks"
+      ],
+      "description": "All-in-one memory + auto-learning: folder-scoped learnings with hybrid vector search PLUS recurring lessons promoted into durable auto-surfaced rules. One install, zero dependencies. (knowledge-loop + instincts combined.)"
     }
   ]
 }

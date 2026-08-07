@@ -1,0 +1,26 @@
+{
+  "name": "memory",
+  "version": "1.0.0",
+  "description": "Unified memory + auto-learning for Claude Code: folder-scoped learnings with hybrid vector search, plus recurring lessons promoted into durable auto-surfaced rules. Zero dependencies.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "auto-learning",
+    "vector-search",
+    "instincts",
+    "self-improving",
+    "hooks",
+    "context"
+  ],
+  "commands": [
+    "./commands/"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}
