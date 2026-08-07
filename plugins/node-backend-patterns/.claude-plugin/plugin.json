@@ -1,0 +1,25 @@
+{
+  "name": "node-backend-patterns",
+  "version": "1.0.0",
+  "description": "Opinionated Node.js backend patterns: layered architecture, edge validation, centralized async error handling, env config, structured logging, and graceful shutdown.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "nodejs",
+    "express",
+    "fastify",
+    "backend",
+    "server",
+    "middleware",
+    "async",
+    "env-config",
+    "logging"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

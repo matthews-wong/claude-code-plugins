@@ -682,6 +682,18 @@
         "endpoints"
       ],
       "description": "REST API design — resource naming, correct status codes, pagination, versioning, idempotency, edge validation."
+    },
+    {
+      "name": "node-backend-patterns",
+      "source": "node-backend-patterns",
+      "category": "backend",
+      "keywords": [
+        "node",
+        "express",
+        "fastify",
+        "backend"
+      ],
+      "description": "Node backend patterns — layered structure, boundary validation, centralized async error handling, env config."
     }
   ]
 }
