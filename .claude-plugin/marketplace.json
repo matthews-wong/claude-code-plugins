@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "matthews-agentic-plugins",
-  "description": "59 Claude Code plugins for agentic workflows, enterprise engineering, and language/stack skills — every plugin ships an auto-invocable skill (JavaScript, TypeScript, React, CSS, REST, Node, plus verification, security, governance, and workflow patterns).",
-  "version": "2.4.0",
+  "description": "60 Claude Code plugins for agentic workflows, enterprise engineering, and language/stack skills — every plugin ships an auto-invocable skill, plus a self-improving knowledge-loop memory with local vector search.",
+  "version": "2.5.0",
   "owner": {
     "name": "Matthews Wong",
     "url": "https://github.com/matthews-wong"

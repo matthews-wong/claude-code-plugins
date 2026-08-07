@@ -4,6 +4,14 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] — 2026-08
+
+### Added
+- **`knowledge-loop`** — a folder-scoped, self-improving memory plugin. A `SessionStart` hook auto-surfaces the most relevant prior learnings for the current folder using a stdlib-only **TF-IDF + cosine vector search**; `/learn` records new gotchas/fixes/decisions and `/recall` retrieves them. Capture is model-driven (a hook can't read the model's reasoning); retrieval is automatic.
+
+### Changed
+- Marketplace now ships **60 plugins**; bumped to `2.5.0`.
+
 ## [2.4.0] — 2026-08
 
 ### Added
