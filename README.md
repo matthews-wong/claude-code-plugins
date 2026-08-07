@@ -1,14 +1,14 @@
 # 🤖 Agentic Claude Code Plugins
 
-> A marketplace of **53 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
+> A marketplace of **59 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
 
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugins-D97757?logo=anthropic&logoColor=white)
-![Plugins](https://img.shields.io/badge/plugins-53-6f42c1)
+![Plugins](https://img.shields.io/badge/plugins-59-6f42c1)
 ![Agentic Workflows](https://img.shields.io/badge/focus-agentic%20workflows-1f883d)
 ![Enterprise Ready](https://img.shields.io/badge/enterprise-ready-0A66C2)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 53 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
+I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 59 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
 
 📖 **New here?** Read [How to write a good plugin](./docs/writing-good-plugins.md) and [How plugins create lean, structured context](./docs/lean-structured-context.md) — the research behind this marketplace.
 
@@ -26,6 +26,41 @@ I spend most of my time these days **building agentic workflows with Claude Code
 ```
 
 Each plugin is a normal Claude Code plugin: a `.claude-plugin/plugin.json` manifest plus the components it ships (`commands/`, `skills/`, `agents/`, `hooks/`).
+
+## 🕹️ How to use
+
+### 1. Install (once)
+```bash
+/plugin marketplace add matthews-wong/claude-code-plugins   # add the marketplace
+/plugin install <plugin>@matthews-agentic-plugins           # install any plugin
+/plugin marketplace list                                    # browse everything
+```
+A plugin does nothing until it's installed in your Claude Code session — adding the marketplace just makes them available.
+
+### 2. Four ways a plugin runs
+| Component | How it triggers | Example |
+| --- | --- | --- |
+| **Skill** | **Auto-invoked** — Claude pulls it in when your request matches the skill's description (no command needed) | ask *"review this diff for security issues"* → `security-review-agent`'s skill fires |
+| **Slash command** | You invoke it explicitly | `/context-audit`, `/scan-secrets`, `/spec` |
+| **Subagent** | Runs in an isolated context (model delegates, or a skill routes to it) | the `code-reviewer` behind `/code-review` |
+| **Hook** | **Deterministic** — fires automatically on an event once installed | `test-guardian` runs tests after every edit |
+
+**Every plugin here ships an auto-invocable skill** (each `SKILL.md` has a `name` + a routing `description`), so most of the time you just describe what you want and the right skill loads itself. The language/stack skills (e.g. `javascript-standards`, `react-patterns`, `rest-api-design`) trigger when you write or review matching code.
+
+### 3. Confirm a skill is firing
+Auto-invocation is model-driven routing, not a hardwired switch — it fires when your task matches the description. To check:
+```bash
+/reload-plugins            # after installing/updating
+```
+Then give a task that should match and confirm Claude loads the skill instead of improvising. If it doesn't fire, the description needs sharpening (the #1 cause) — see [Writing a good plugin](./docs/writing-good-plugins.md).
+
+### 4. Manage
+```bash
+/plugin                                          # browse & toggle installed plugins
+/plugin marketplace update matthews-agentic-plugins
+```
+
+See the [quickstart](./examples/quickstart.md) for suggested bundles by goal.
 
 ## 🧭 Organized by the five stages of AI adoption
 
@@ -82,6 +117,19 @@ The plugin categories map to the maturity model from **Boris Cherny's "Steps to 
 | [**cost-controller**](./plugins/cost-controller) | A model-selection policy: cheap/fast for bulk work, frontier for judgment. |
 | [**token-budget-tracker**](./plugins/token-budget-tracker) | A session hook + `/token-budget` to track usage and trim context. |
 | [**otel-governance**](./plugins/otel-governance) | Enable OpenTelemetry export + spend caps for team governance. |
+
+## 💻 Language & stack skills — *auto-invoke as you code*
+
+These fire automatically when you write or review matching code — no command needed.
+
+| Plugin | Triggers on | What it applies |
+| --- | --- | --- |
+| [**javascript-standards**](./plugins/javascript-standards) | `.js/.ts/.jsx/.tsx`, "modern JS" | ESM, `const`/`let`, `===`, async/await, immutability, real error handling. |
+| [**typescript-typing**](./plugins/typescript-typing) | TS types, "any", generics | avoid `any` (→ `unknown` + narrowing), discriminated unions, constrained generics, `satisfies`, strict config. |
+| [**react-patterns**](./plugins/react-patterns) | JSX/`.tsx`, hooks, components | rules of hooks, state colocation, stable keys, controlled inputs, effect cleanup, measured memoization, a11y. |
+| [**css-responsive**](./plugins/css-responsive) | `.css/.scss`, "responsive", layout | mobile-first, flexbox vs grid, relative units, design tokens, `prefers-color-scheme`, container queries. |
+| [**rest-api-design**](./plugins/rest-api-design) | API/endpoint design | resource naming, correct status codes, error envelope, pagination, idempotency, versioning, edge validation. |
+| [**node-backend-patterns**](./plugins/node-backend-patterns) | Node/Express/Fastify | route→service→data layering, boundary validation, centralized async errors, env config, graceful shutdown. |
 
 ## 🏢 Enterprise plugins
 
