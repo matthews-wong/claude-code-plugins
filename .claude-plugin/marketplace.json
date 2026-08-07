@@ -633,6 +633,18 @@
         "best-practices"
       ],
       "description": "Modern JavaScript/TypeScript conventions — auto-invokes when writing or reviewing .js/.ts/.jsx/.tsx code."
+    },
+    {
+      "name": "typescript-typing",
+      "source": "typescript-typing",
+      "category": "language",
+      "keywords": [
+        "typescript",
+        "types",
+        "generics",
+        "strict"
+      ],
+      "description": "TypeScript type design — avoid any, discriminated unions, constrained generics; triggers on type errors and .ts files."
     }
   ]
 }

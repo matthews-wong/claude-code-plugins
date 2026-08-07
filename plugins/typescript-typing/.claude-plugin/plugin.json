@@ -1,0 +1,22 @@
+{
+  "name": "typescript-typing",
+  "version": "1.0.0",
+  "description": "Precise TypeScript typing: eliminate any, use unknown with narrowing, discriminated unions, readonly, constrained generics, satisfies, and strict tsconfig.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "types",
+    "type-safety",
+    "generics",
+    "discriminated-unions",
+    "strict",
+    "any"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
