@@ -4,6 +4,15 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] — 2026-08
+
+### Added
+- **6 auto-invocable language & stack skills**: `javascript-standards`, `typescript-typing`, `react-patterns`, `css-responsive`, `rest-api-design`, `node-backend-patterns` — they fire automatically when you write or review matching code.
+- A **"How to use"** section in the README: install, the four ways a plugin runs (skill auto-invoke / slash / subagent / hook), how to confirm a skill is firing, and how to manage plugins.
+
+### Changed
+- Marketplace now ships **59 plugins**; bumped to `2.4.0`.
+
 ## [2.3.0] — 2026-08
 
 ### Added
