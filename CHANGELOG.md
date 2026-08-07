@@ -9,6 +9,14 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - **`knowledge-loop` → v1.2**: added **confidence scoring** (corroborating merges raise confidence; retrieval prefers higher-confidence, used-and-survived notes; low-confidence/unused/stale notes are pruned) and **`/evolve`** — clusters recurring learnings and drafts a reusable skill (the instincts→skill loop). Original, stdlib-only, backward-compatible. See CREDITS.md.
 
+## [2.7.0] — 2026-08
+
+### Added
+- **`memory`** — an all-in-one memory + auto-learning plugin that combines `knowledge-loop` and `instincts` into a single install with one `.claude/memory/` store, one CLI, and one `SessionStart` hook that surfaces both relevant learnings and active rules. Adds a `/memory-status` dashboard and faithful whole-memory `export`/`import` (preserves ids, access counts, support/confidence). Keeps the hybrid RRF + recency-decay retrieval and the `1 - 0.5^support` confidence model. Zero runtime dependencies (stdlib only). `knowledge-loop` and `instincts` remain available separately.
+
+### Changed
+- Marketplace now ships **62 plugins**; bumped to `2.7.0`. `memory` is the recommended install for the memory + auto-learning core.
+
 ## [2.6.0] — 2026-08
 
 ### Added

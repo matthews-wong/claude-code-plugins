@@ -1,14 +1,14 @@
 # 🤖 Agentic Claude Code Plugins
 
-> A marketplace of **61 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
+> A marketplace of **62 Claude Code plugins** for agentic workflows and enterprise engineering — organized around Boris Cherny's five stages of AI adoption, plus security, compliance, quality, and plugins modeled on his own workflow. Install any of them with one command.
 
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugins-D97757?logo=anthropic&logoColor=white)
-![Plugins](https://img.shields.io/badge/plugins-61-6f42c1)
+![Plugins](https://img.shields.io/badge/plugins-62-6f42c1)
 ![Agentic Workflows](https://img.shields.io/badge/focus-agentic%20workflows-1f883d)
 ![Enterprise Ready](https://img.shields.io/badge/enterprise-ready-0A66C2)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 61 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
+I spend most of my time these days **building agentic workflows with Claude Code** — turning it from an autocomplete into a fleet of agents that verify their own work, review each other, pull their own context, and run on a schedule. This marketplace is that practice packaged up: 62 small, focused plugins (skills, slash commands, subagents, and hooks) you can drop into your own setup — from the agentic-adoption core to an enterprise layer for security, compliance, governance, and quality, plus plugins modeled directly on Boris Cherny's own workflow.
 
 📖 **New here?** Read [How to write a good plugin](./docs/writing-good-plugins.md) and [How plugins create lean, structured context](./docs/lean-structured-context.md) — the research behind this marketplace.
 
@@ -169,9 +169,10 @@ Beyond the agentic-adoption core, an enterprise layer for teams that need securi
 ### 🧮 Context engineering
 | Plugin | What it installs |
 | --- | --- |
-| [**context-budget**](./plugins/context-budget) | ⭐ `/context-audit` — audit `CLAUDE.md` and skills for bloat and enforce lean, structured context via progressive disclosure. |
-| [**knowledge-loop**](./plugins/knowledge-loop) | 🧠 A self-improving, folder-scoped memory: a `SessionStart` hook auto-surfaces relevant past learnings via **local vector search** (hybrid RRF + recency decay), and `/learn` records new gotchas/fixes — so each agent starts smarter than the last. |
-| [**instincts**](./plugins/instincts) | 🧬 **Auto-learning** — promotes recurring learnings into durable **rules** ("instincts") that are auto-surfaced every session, with a support/confidence model and `export`/`import` to carry them across projects. Pairs with `knowledge-loop`. |
+| [**memory**](./plugins/memory) | ⭐ **All-in-one memory + auto-learning** (the recommended install): folder-scoped learnings with hybrid vector search **and** recurring lessons promoted into durable, auto-surfaced rules — one `SessionStart` hook surfaces both, one store, a `/memory-status` dashboard, and whole-memory `export`/`import`. Zero dependencies. Combines `knowledge-loop` + `instincts`. |
+| [**context-budget**](./plugins/context-budget) | `/context-audit` — audit `CLAUDE.md` and skills for bloat and enforce lean, structured context via progressive disclosure. |
+| [**knowledge-loop**](./plugins/knowledge-loop) | 🧠 Folder-scoped memory only: a `SessionStart` hook auto-surfaces relevant past learnings via **local vector search** (hybrid RRF + recency decay); `/learn` records new gotchas/fixes. (Half of `memory`.) |
+| [**instincts**](./plugins/instincts) | 🧬 Auto-learning only: promotes recurring learnings into durable **rules** auto-surfaced every session, with a support/confidence model and `export`/`import`. (The other half of `memory`.) |
 
 ### 🛡️ Security & policy skills — *auto-invocable reviews*
 | Plugin | What it installs |
