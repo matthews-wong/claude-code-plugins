@@ -4,6 +4,11 @@ All notable changes to this marketplace are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.1] — 2026-08
+
+### Changed
+- **`knowledge-loop` → v1.2**: added **confidence scoring** (corroborating merges raise confidence; retrieval prefers higher-confidence, used-and-survived notes; low-confidence/unused/stale notes are pruned) and **`/evolve`** — clusters recurring learnings and drafts a reusable skill (the instincts→skill loop). Original, stdlib-only, backward-compatible. See CREDITS.md.
+
 ## [2.6.0] — 2026-08
 
 ### Added
