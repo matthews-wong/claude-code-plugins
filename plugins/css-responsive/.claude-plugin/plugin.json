@@ -1,0 +1,25 @@
+{
+  "name": "css-responsive",
+  "version": "1.0.0",
+  "description": "Opinionated, mobile-first responsive CSS guidance: flexbox vs grid, relative units, design tokens, dark mode, and container queries.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "scss",
+    "responsive",
+    "flexbox",
+    "grid",
+    "media-query",
+    "dark-mode",
+    "design-tokens",
+    "container-queries",
+    "layout"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

@@ -657,6 +657,19 @@
         "components"
       ],
       "description": "React component and hooks best practices — triggers on JSX/.tsx, useState/useEffect, component work."
+    },
+    {
+      "name": "css-responsive",
+      "source": "css-responsive",
+      "category": "frontend",
+      "keywords": [
+        "css",
+        "responsive",
+        "flexbox",
+        "grid",
+        "dark-mode"
+      ],
+      "description": "Responsive CSS and layout — mobile-first, flexbox vs grid, design tokens, prefers-color-scheme dark mode."
     }
   ]
 }
