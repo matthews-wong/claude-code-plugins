@@ -1,0 +1,14 @@
+{
+  "name": "instincts",
+  "version": "1.0.0",
+  "description": "Auto-learning durable rules: promote recurring lessons into high-confidence instincts that are surfaced every session so the agent follows them.",
+  "author": {
+    "name": "Matthews Wong",
+    "url": "https://github.com/matthews-wong"
+  },
+  "license": "MIT",
+  "keywords": ["memory", "auto-learning", "instincts", "rules", "hooks", "self-improving"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"],
+  "hooks": "./hooks/hooks.json"
+}
